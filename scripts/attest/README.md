@@ -1,0 +1,1 @@
+Pinned MIT-licensed orbital-attest client and verifier from orbitalfoundation/attest commit 0dc7f48d1c39f10166224bbcdb4b013fd8c0685d. Source files are unchanged. Used for attest.monster device sign-in and P-256 signature verification. See LICENSE. The client is configured explicitly for https://attest.monster.

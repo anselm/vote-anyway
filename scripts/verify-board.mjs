@@ -16,7 +16,8 @@ export async function verifyBoard(board,publicKey,electionId,checkpoint=null,rec
  for(let i=0;i<board.records.length;i++){
   const row=board.records[i];
   if(row.index!==i+1||row.previousHash!==previousHash)throw Error('Broken record sequence.');
-  const body={index:row.index,previousHash:row.previousHash,ciphertext:row.ciphertext,receipt:row.receipt};
+  if(electionId!=='neighborhood-demo-2026'&&row.electionId!==electionId)throw Error('Record belongs to a different topic.');
+  const body={...(row.electionId?{electionId:row.electionId}:{}),index:row.index,previousHash:row.previousHash,ciphertext:row.ciphertext,receipt:row.receipt};
   const computed=await hash(new TextEncoder().encode(JSON.stringify(body)));
   if(computed!==row.hash||row.receipt!==await hash(bytes64(row.ciphertext))||receipts.has(row.receipt))throw Error('Record or receipt mismatch.');
   if(!await crypto.subtle.verify('Ed25519',key,bytes64(row.signature),Uint8Array.from(computed.match(/../g),b=>parseInt(b,16))))throw Error('Invalid record signature.');

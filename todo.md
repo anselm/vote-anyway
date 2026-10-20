@@ -112,3 +112,17 @@ Keep limitations explicit: the demonstration has server-held decryption keys, no
 - [x] Test 12 concurrent writes through two database pools, duplicate rollback, HTTP flow, restart and key mismatch on an isolated Neon branch.
 - [x] Store fresh production keys in a versioned Secret Manager secret with access restricted to the app runtime.
 - [ ] Introduce pagination/incremental verification before larger use: this research demo reads the complete log for integrity checks and totals.
+
+## Topics, identity, agents and presentation
+
+- [x] Publish immutable topic questions with 2–8 choices and shareable URLs.
+- [x] Require attest.monster authentication and device-signed requests for topic creation and voting, including the example endpoint.
+- [x] Check delegation origin, device key, expiry and revocation; prevent signed-request replay in shared storage.
+- [x] Add explicitly approved, scoped and revocable agent permissions and a runnable CLI.
+- [x] Publish `/llms.txt`, `/openapi.json`, and a readable agent guide.
+- [x] Reframe the public devlog around the project’s development; retain historical engineering records in Git.
+- [x] Support system light/dark mode using one shared palette; check normal text contrast and mobile overflow.
+- [x] Use the supplied Anchorage voting-line photograph on the homepage with source credit.
+- [ ] Confirm a live human passkey sign-in round trip with the owner.
+- [ ] Define topic eligibility and one-person/one-vote or revoting policies. Authentication alone does not implement them.
+- [ ] Add topic management, closing and moderation; questions are currently immutable and open immediately.

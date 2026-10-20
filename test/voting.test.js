@@ -50,7 +50,7 @@ test('Neon concurrent writes, duplicate rollback, API, restart and key continuit
   const board=await b.board();assert.equal(board.records.length,before+12);
   assert.equal((await b.totals()).total,before+12);
   await verifyBoard(board,testKeys.signingPublicKey,election.id,results[0].checkpoint,encrypted[0].receipt);
-  app=await createApp({voting:b,staticFiles:false});
+  app=await createApp({authenticate:async()=>({kind:'session',root:'test'}),voting:b,staticFiles:false});
   assert.equal((await app.inject('/api/config')).json().election.id,election.id);
   assert.equal((await app.inject('/api/receipt?receipt='+encrypted[0].receipt)).json().found,true);
   assert.equal((await app.inject({method:'POST',url:'/api/vote',payload:{ciphertext:encrypted[0].ciphertext}})).statusCode,409);

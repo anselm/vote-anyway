@@ -1,13 +1,13 @@
-# October 20, 2026 — Bringing the experiment together
+# October 20, 2026 — Making the experiment inspectable
 
-The site now combines the original voting experiment with the Svelte interface, civic Americana design, Neon database and Cloud Run deployment. The neighborhood question and its three choices are retained, along with browser encryption, ciphertext receipts, signed records, public downloads, the independent checker and demonstration totals. The newer review step is retained too.
+The first experiment asks a small fictional question: what should a neighborhood study first? Street trees, safer crossings, or rain gardens. Keeping the question modest gives us room to examine the machinery of participation.
 
-Database transactions serialize the public record across app instances. A duplicate encrypted submission cannot create a second record. The election configuration and public keys are checked against the database on startup. Fresh production keys live in a versioned Secret Manager secret; missing or mismatched keys cause an explicit failure rather than a new election identity.
+A participant chooses, reviews, and submits. The browser encrypts the ballot; the server validates it, stores the encrypted record, and returns a receipt. Each record is signed and linked to the one before it. Anyone can download the log and check the signatures and receipt inclusion with a separate program.
 
-The browser and standalone checker share verification code. Previously saved checkpoints detect shorter or conflicting histories; they do not prevent an operator from publishing different histories to different people. The original independent checker also accepts the exported records.
+The interface uses warm ivory, deep navy, muted brick red, serif headings and fine rules. It borrows the quiet clarity of civic documents without presenting itself as an official institution.
 
-Validation: the original end-to-end test passed; six offline app/protocol tests passed; four tests against an isolated Neon branch passed without skips, including 12 simultaneous writes through two pools, duplicate rollback, HTTP submission/lookup/export/totals, fresh-pool persistence and rejection of different keys. The production build passed. Browser checks covered choose, review, encrypted submission and receipt verification, with a 390-pixel layout check.
+Neon PostgreSQL keeps the public record consistent across Cloud Run instances. Encryption and signing keys persist across deployments. Tests exercise simultaneous submissions, rejected duplicates, restart persistence, altered records, and conflicting histories. A saved checkpoint lets a reader compare the record they saw earlier with the one published now.
 
-The essay and three companion appendices retain their wording. The full v0.4 outline, including all eleven exploratory appendix sections, stays in the devlog. Migration notices have been removed from the reading pages; implementation history belongs here.
+These are useful pieces of evidence, with clear limits. The server can decrypt ballots and computes the totals. Signing a record does not establish eligibility, prove that the browser honored a person's intent, or independently prove the tally. The experiment makes those next questions concrete.
 
-This remains a fictional research demonstration. The operator can decrypt ballots and computes the totals. Repeat participation is allowed; eligibility, cast-as-intended and independent tally proofs remain future research. The small demo verifies the entire log for writes, exports and totals; incremental verification and pagination are needed before larger use.
+The essay and its three companion appendices develop the argument alongside the software. The longer working outline holds eleven research appendix sections, alternative passages, references and questions for further work.

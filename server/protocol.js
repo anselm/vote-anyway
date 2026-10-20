@@ -15,7 +15,7 @@ export const election = Object.freeze({
 const HASH_ZERO = '0'.repeat(64);
 const sha256 = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const b64 = bytes => Buffer.from(bytes).toString('base64');
-export const recordBody = ({index, previousHash, ciphertext, receipt}) => ({index, previousHash, ciphertext, receipt});
+export const recordBody = ({index, previousHash, ciphertext, receipt, electionId}) => (electionId?{electionId,index,previousHash,ciphertext,receipt}:{index, previousHash, ciphertext, receipt});
 export const recordHash = row => sha256(Buffer.from(JSON.stringify(recordBody(row))));
 
 // A log integrity check, not an election/tally proof. The server's signing key is trusted here.
@@ -51,19 +51,19 @@ export function validateKeys(keys) {
   }
   if(crypto.createPrivateKey(keys.encryptionPrivateKey).asymmetricKeyType!=='rsa'||crypto.createPrivateKey(keys.signingPrivateKey).asymmetricKeyType!=='ed25519') throw Error('Unexpected voting key types');
 }
-export function decodeBallot(ciphertext,keys) {
+export function decodeBallot(ciphertext,keys,ballotElection=election) {
   const invalid=()=>Object.assign(Error('Invalid encrypted ballot for this experiment'),{statusCode:400});
   if(typeof ciphertext!=='string'||ciphertext.length<150||ciphertext.length>800||!/^[A-Za-z0-9+/]+={0,2}$/.test(ciphertext))throw invalid();
   const bytes=Buffer.from(ciphertext,'base64');
   if(bytes.toString('base64')!==ciphertext)throw invalid();
   try {
     const ballot=JSON.parse(crypto.privateDecrypt({key:keys.encryptionPrivateKey,padding:crypto.constants.RSA_PKCS1_OAEP_PADDING,oaepHash:'sha256'},bytes).toString('utf8'));
-    if(!ballot||ballot.electionId!==election.id||!election.options.some(o=>o.id===ballot.choice)||typeof ballot.nonce!=='string'||ballot.nonce.length<16||ballot.nonce.length>80)throw invalid();
+    if(!ballot||ballot.electionId!==ballotElection.id||!ballotElection.options.some(o=>o.id===ballot.choice)||typeof ballot.nonce!=='string'||ballot.nonce.length<16||ballot.nonce.length>80)throw invalid();
     return ballot;
   } catch {throw invalid();}
 }
-export function createRecord(ciphertext,index,previousHash,keys) {
-  const body={index,previousHash,ciphertext,receipt:sha256(Buffer.from(ciphertext,'base64'))};
+export function createRecord(ciphertext,index,previousHash,keys,electionId=election.id) {
+  const body={...(electionId===election.id?{}:{electionId}),index,previousHash,ciphertext,receipt:sha256(Buffer.from(ciphertext,'base64'))};
   const hash=recordHash(body);
   return {...body,hash,signature:crypto.sign(null,Buffer.from(hash,'hex'),keys.signingPrivateKey).toString('base64')};
 }

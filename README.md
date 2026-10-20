@@ -4,9 +4,9 @@ An experimental, unofficial voting laboratory and companion essay. Theory and wo
 
 ## Current app
 
-The Svelte interface combines a fictional neighborhood ballot and review step with browser-side RSA-OAEP encryption, ciphertext receipts, Ed25519 signed hash-linked records, browser verification, downloadable evidence and an independent checker. Fastify serves the app from Cloud Run; Neon PostgreSQL serializes ballot writes across instances. Encryption and signing keys persist in Secret Manager and must match the election's public keys in the database.
+Visitors can create a topic, publish a question with 2–8 fixed choices, and share its ballot URL. Creating topics and voting require attest.monster sign-in; reading and checking public records stays open. The Svelte interface combines a ballot and review step with browser-side RSA-OAEP encryption, ciphertext receipts, Ed25519 signed hash-linked records, browser verification, downloadable evidence and an independent checker. Fastify serves the app from Cloud Run; Neon PostgreSQL serializes ballot writes across instances. Encryption and signing keys persist in Secret Manager and must match the election's public keys in the database.
 
-The server can decrypt ballots and computes the demonstration totals. Repeat participation is allowed. This research demo does not provide voter eligibility, cast-as-intended or independent tally proofs, or coercion resistance. Records and totals count submissions, not unique people. Earlier practice fingerprints remain in a separate table and can still be looked up.
+The server can decrypt ballots and computes the demonstration totals. Repeat participation is allowed. Sign-in is verified through site-scoped attest device delegations and signed, replay-protected requests. It does not provide voter eligibility, cast-as-intended or independent tally proofs, or coercion resistance. Records and totals count submissions, not unique people. Earlier practice fingerprints remain in a separate table and can still be looked up.
 
 ## Local development
 
@@ -33,3 +33,11 @@ The essay, three companion appendices, and the full v0.4 outline with eleven exp
 See [todo.md](todo.md), [implementation audit](docs/IMPLEMENTATION-AUDIT.md), [deployment](docs/DEPLOYMENT.md), and [combined release](devlog/20261020-combined-app.md).
 
 Canonical checkout: `/Volumes/summer/projects/2026/vote-anyway`.
+
+## Agents and appearance
+
+People can approve and revoke agent permissions at `/agent.html`. Agents receive an expiring application grant scoped to topic creation and/or vote submission; attest repository-write permissions are not treated as voting authority. The guide is at `/agents.html` and `/llms.txt`, with `/openapi.json` and `scripts/agent.mjs` for integration.
+
+A shared civic palette follows system light/dark preference on the app and all reading pages. The homepage photo is supplied by Anselm and credited to Bill Roth / Anchorage Daily News.
+
+Production authentication accepts only the configured `AUTH_ORIGINS` (comma-separated site origins). The default includes the two known Cloud Run service URLs and the tagged staging URL. Requests fail closed when attest verification is unavailable. Private keys never go to attest; only a delegation identifier and the site origin are used for the status check. Nonces and agent grants live in separate PostgreSQL tables; public ballot records do not contain identities.

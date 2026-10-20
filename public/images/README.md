@@ -1,0 +1,2 @@
+Homepage photo supplied by Anselm on October 20, 2026. Photographer: Bill Roth / Anchorage Daily News. Caption verified against article metadata: early voters at Midtown Mall in Anchorage, October 19, 2026. Source: https://www.adn.com/politics/2026/10/19/show-up-and-do-your-part-early-voting-begins-in-alaska-with-long-lines-in-anchorage/
+The supplied image is preserved without alteration. This credit is not a claim that the photograph is covered by the repository’s software license.

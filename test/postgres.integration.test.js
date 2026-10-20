@@ -7,7 +7,7 @@ import { postgresStore } from '../server/store.js';
 test('Neon receipt persists across app and connection-pool restarts', {skip:!process.env.DATABASE_URL}, async()=>{
   const commitment=randomBytes(32).toString('hex');
   let store=postgresStore(process.env.DATABASE_URL);
-  let app=await createApp({store,staticFiles:false});
+  let app=await createApp({authenticate:async()=>({kind:'session',root:'test'}),store,staticFiles:false});
   let created;
   try {
     assert.equal((await app.inject('/api/health')).json().storage,'postgres');
@@ -19,7 +19,7 @@ test('Neon receipt persists across app and connection-pool restarts', {skip:!pro
     assert.ok(created.createdAt);
   } finally {await app.close();await store.close();}
   store=postgresStore(process.env.DATABASE_URL);
-  app=await createApp({store,staticFiles:false});
+  app=await createApp({authenticate:async()=>({kind:'session',root:'test'}),store,staticFiles:false});
   try {
     const found=await app.inject('/api/receipts/'+commitment);
     assert.equal(found.statusCode,200);
