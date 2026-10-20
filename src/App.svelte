@@ -33,7 +33,7 @@
 <div class="notice">AN OPEN EXPERIMENT IN DEMOCRACY <span>Independent. Unofficial. In progress.</span></div>
 <header>
   <button class="brand" onclick={()=>navigate('home')} aria-label="Vote Anyway home"><span class="mark">v<span>↗</span></span>vote anyway<span class="brand-dot">.</span></button>
-  <nav aria-label="Main navigation"><a href="/essay.html">Read the essay</a><button class:active={page==='about'} onclick={()=>navigate('about')}>The experiment</button><button class:active={page==='verify'} onclick={()=>navigate('verify')}>Check a receipt</button><a href="https://github.com/anselm/vote-anyway" target="_blank" rel="noreferrer">GitHub ↗</a></nav>
+  <nav aria-label="Main navigation"><a href="/devlog.html">Devlog</a><a href="/essay.html">Read the essay</a><button class:active={page==='about'} onclick={()=>navigate('about')}>The experiment</button><button class:active={page==='verify'} onclick={()=>navigate('verify')}>Check a receipt</button><a href="https://github.com/anselm/vote-anyway" target="_blank" rel="noreferrer">GitHub ↗</a></nav>
 </header>
 <main>
 {#if page==='home'}

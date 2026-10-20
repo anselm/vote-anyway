@@ -1,4 +1,4 @@
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, writeFile, readdir, mkdir } from 'node:fs/promises';
 import { marked } from 'marked';
 const source=await readFile(new URL('../essay/vote-anyway-first-draft.md',import.meta.url),'utf8');
 // Render only the tracked author-controlled source, never visitor-supplied Markdown.
@@ -9,3 +9,21 @@ await writeFile(new URL('../dist/vote-anyway-first-draft.md',import.meta.url),so
 for(const [name,title,detail] of [['appendix-security','Security appendix','The original appendix is in the earlier prototype archive. Its text is still being recovered.'],['appendix-democracy','Delegation and institutions','The original appendix is in the earlier prototype archive. Its text is still being recovered.'],['appendix-prototype','Original prototype notes','The original demo included browser encryption and a signed record verifier. Its source archive still needs importing.'],['lab','Original prototype','The original encrypted-ballot demo is being recovered. The homepage links to the newer browser-only practice interface.'],['devlog','Development log','The current development log and original prototype recovery status are available in the repository.']]){
   await writeFile(new URL('../dist/'+name+'.html',import.meta.url),`<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${title} — Vote Anyway</title><body style="max-width:700px;margin:60px auto;padding:20px;font:18px/1.7 Georgia;background:#f7f2e8;color:#20334d;border-top:3px solid #98534d"><a href="/essay.html">← Essay</a><h1>${title}</h1><p>${detail}</p><p><a href="https://github.com/anselm/vote-anyway">Project repository</a> · <a href="/">Current practice site</a></p></body></html>`);
 }
+
+// Publish chronological project records, including the unedited essay snapshot.
+await mkdir(new URL('../dist/devlog/',import.meta.url),{recursive:true});
+const entries=[];
+for(const filename of (await readdir(new URL('../devlog/',import.meta.url))).filter(name=>name.endsWith('.md')).sort().reverse()){
+  const markdown=await readFile(new URL('../devlog/'+filename,import.meta.url),'utf8');
+  const title=markdown.split('\n').find(line=>line.startsWith('# '))?.slice(2)||filename;
+  const slug=filename.slice(0,-3);
+  const displayTitle=filename==='20261020-essay-first-draft.md'?'October 20, 2026 — Essay first draft':title;
+  entries.push({slug,title:displayTitle});
+  const page=html.replace('<title>Vote Anyway — First draft</title>','<title>'+displayTitle+' — Vote Anyway</title>').replace(' · Original working essay',' · <a href="/devlog.html">Development log</a>');
+  const start=page.indexOf('<article>'),end=page.indexOf('</article>');
+  const note=filename==='20261020-essay-first-draft.md'?'<aside class="note">October 20, 2026 · Original essay first draft, preserved unchanged. This describes the original research prototype; see newer devlog entries for the current implementation.</aside>':'';
+  await writeFile(new URL('../dist/devlog/'+slug+'.html',import.meta.url),page.slice(0,start)+'<article>'+note+marked.parse(markdown)+'<footer><a href="/devlog.html">← All development entries</a></footer>'+page.slice(end));
+}
+const list='<h1>Development log</h1><p>The essay, experiments, engineering decisions, and discoveries as they develop.</p><ul>'+entries.map(entry=>'<li><a href="/devlog/'+entry.slug+'.html">'+entry.title+'</a></li>').join('')+'</ul>';
+const start=html.indexOf('<article>'),end=html.indexOf('</article>');
+await writeFile(new URL('../dist/devlog.html',import.meta.url),html.slice(0,start).replace('<title>Vote Anyway — First draft</title>','<title>Development log — Vote Anyway</title>')+'<article>'+list+html.slice(end));

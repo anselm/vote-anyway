@@ -50,7 +50,7 @@ Keep limitations explicit: the original demo reportedly has server-held decrypti
 ## Research publication and editorial continuity
 
 - [ ] Publish recovered appendices directly from their Markdown source, with working cross-links.
-- [ ] Publish the actual devlog on the website rather than only a link to GitHub.
+- [x] Publish the actual devlog on the website, including the full original essay as `devlog/20261020-essay-first-draft.md`.
 - [ ] Restore citations and third-party research from the appendices: cryptographic protocols, security objections, Estonia, delegation, incentives, and voting methods.
 - [ ] Preserve explicit credit to Brad deGraf and the other Smartocracy authors. Keep the 2007 paper and profile references.
 - [ ] Keep the core essay concise and persuasive; put technical detail and previous work in appendices.
