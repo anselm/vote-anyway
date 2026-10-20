@@ -1,38 +1,26 @@
 # Project brief
 
-Recovered from Anselm’s “Digital voting article framing” conversation on October 20, 2026. The conversation began as an essay discussion and developed into a software project. Some older messages and downloadable artifacts were unavailable during migration. Do not treat this summary as a replacement for unrecovered source text.
+Vote Anyway is an argument for digital voting, paired with an unofficial working experiment. Read [HANDOFF.md](HANDOFF.md) for the current continuation guide and [the development log](../devlog/) for the evolving argument and decisions.
 
 ## Agreed direction
 
-- Vote Anyway is a clearly unofficial experimental parallel voting platform, with a companion essay, “Vote Anyway” (earlier outline title: “Voting, Unbundled”).
-- Node 22, Fastify, Svelte 5, Tailwind, PostgreSQL on Neon, hosting on Google Cloud Run.
-- attest.monster is the intended identity integration, pending inspection of its actual protocol and configuration.
-- Preserve the essay, linked technical appendices, research, and chronological `/devlog/` in GitHub.
-- Start with a mobile demonstration, then support election creation and configurable participation policies.
-- Keep authentication, eligibility, encrypted ballots, and public audit evidence separate.
-- Explore provisional ballots and eligibility adjudication, Advogato-inspired social trust graphs, richer voting methods, and later liquid-democracy delegation.
+- Make democratic participation more accessible and frequent, with privacy, faithful counting and independently checkable evidence as goals.
+- Connect theory to experiments and evidence. Keep the core essay persuasive; put technical detail, objections, citations and prior work in appendices.
+- Preserve the original writing and prototype as tracked source. Continue the deliberate combination documented in [the implementation audit](IMPLEMENTATION-AUDIT.md).
+- Use Svelte 5, Fastify, Node 22, Neon PostgreSQL and Google Cloud Run. Keep the working attest.monster integration.
+- Keep authentication, eligibility, encrypted ballots and public audit evidence conceptually separate.
+- Maintain a restrained, welcoming civic design, system light/dark support and ordinary shareable URLs.
 
-## Editorial direction
+## Current implementation
 
-Keep the core essay persuasive and accessible, with technical material, research citations, and third-party work in appendices. The wider context of collective governance motivates the article without consuming it. Anselm’s praxis connects theory and action: build a working experiment, learn from it, and revise the argument.
+Authenticated people can create and share immutable single-choice topics, vote, and authorize scoped agents. Encrypted ballots are persisted transactionally with signed linked records, receipts and independently executable record checks. The public site includes the essay, all preserved appendices, research index, devlog and current feature plan.
 
-## Implementation status
+Repeat submissions remain allowed. The operator can decrypt ballots and computes totals. Eligibility, ballot-intent proofs and independent tally proofs are not implemented. Anselm confirmed real public passkey sign-in works.
 
-The GitHub repository initially contained only a 13-byte README. Anselm confirmed that no cloud resources or Neon database had been created. The first local implementation provides a practice experience and deployment foundation, not the completed cryptographic voting system.
+## Next product work
 
-## Next milestones
+Design an informal single-winner ranked-choice runoff: explicit election rules, a ranked ballot and visible counting rounds. Determine eligibility, replacement/repeat-vote policy, closing time, tie handling and incomplete rankings before implementation. See [the voting-method note](../content/voting-methods.md). Approval, separate-round runoffs, multi-seat methods, provisional participation, trust graphs and delegation remain further research directions.
 
-1. Preserve the deployed Cloud Run/Neon foundation. Live receipt write/read and pool-restart persistence are verified; cross-instance/redeployment checks remain.
-2. Recover the original outline and remaining product discussion without rewriting or inventing the missing material.
-3. Inspect attest.monster; define identity and election-scoped eligibility interfaces.
-4. Select an established cryptographic protocol and publish a threat model and independently executable verifier before claiming verifiable voting.
-5. Introduce election creation, participation policy, provisional ballots, and adjudication with appropriate authorization.
-6. Explore ranked/approval methods, trust graphs, delegation, and incentives as separately documented experiments.
+## Continuity
 
-## Current infrastructure
-
-Anselm selected `anselm-gcloud`. The site is live at https://vote-anyway-728854538261.us-west1.run.app in `us-west1`, with Neon project `restless-resonance-93178261` on its production branch. See `docs/DEPLOYMENT.md` for identities and secret references. No custom domain is configured.
-
-## Migration completeness
-
-See [`../todo.md`](../todo.md) for the audited recovery checklist. The full essay and original first-draft devlog are recovered. The supplied original prototype source, three appendices, threat model, and editorial roadmap are restored. The v0.4 working sketch is recovered in the devlog, including its research appendices and citations. Original prototype code is preserved under `reference/original-prototype-20261020/`, excluding generated keys/data. The current practice interface is not a feature-complete port of the original encrypted-ballot demo.
+The original essay, three companion appendices, first-draft devlog, full v0.4 outline with eleven appendices, and original code archive are preserved in Git. Use the source map in the handoff; do not rebuild from fragments of a chat. Historical entries remain historical. Current infrastructure and deployment procedure are in [DEPLOYMENT.md](DEPLOYMENT.md).

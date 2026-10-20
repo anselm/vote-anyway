@@ -10,7 +10,7 @@ Browser checks covered the original encrypted choose/review/submit/receipt flow,
 
 ## Public deployment
 
-Code commit `c9059be` is deployed as Cloud Run revision `vote-anyway-00007-guy`, serving 100% of public traffic. GitHub Checks passed. After promotion, the canonical public URL passed authentication-gate checks, pre-deployment receipt/key continuity, all essay/appendix/outline pages, the curated devlog, system theme CSS, exact supplied photo bytes, API schema, and downloaded agent CLI/verifier execution. Anselm subsequently confirmed that sign-in works well on the public site on October 20, 2026, completing the owner-operated passkey round-trip check.
+The topics/authentication release at code commit `c9059be` was deployed as Cloud Run revision `vote-anyway-00007-guy`, serving 100% of public traffic. GitHub Checks passed. After promotion, the canonical public URL passed authentication-gate checks, pre-deployment receipt/key continuity, all essay/appendix/outline pages, the curated devlog, system theme CSS, exact supplied photo bytes, API schema, and downloaded agent CLI/verifier execution. Anselm subsequently confirmed that sign-in works well on the public site on October 20, 2026, completing the owner-operated passkey round-trip check.
 
 Full isolated-Neon run: 10 tests passed, zero failures, zero skips. Offline/CI run: 7 passed and 3 database-dependent tests explicitly skipped. Original prototype test: 1 passed. Production build passed. No source prose or research appendices were changed.
 
@@ -21,3 +21,9 @@ Full isolated-Neon run: 10 tests passed, zero failures, zero skips. Offline/CI r
 - Browser checks: Topics and Start a vote have distinct paths; refresh, Back and Forward retain the correct page. Topic-specific receipt URLs prefill the receipt and link to the same topic’s public record.
 - Research index destinations and all eleven working-outline appendix anchors resolve. Original essay and three appendix Markdown sources remain unchanged.
 - Public Where we are updated to distinguish working features, present limitations and proposed runoff work.
+
+## Navigation and homepage release
+
+Feature commits `7ec4267` and `a595a49` were deployed as `vote-anyway-00010-les`, with 100% traffic confirmed October 20, 2026. GitHub Checks passed. Candidate checks verified page routes and 404s, all three appendix pages and eleven outline anchors, exact essay Markdown preservation, the earlier ballot’s signed-chain continuity, and unsigned-write rejection. The canonical public homepage was inspected after promotion and showed the explicit digital-voting argument and real links. No schema, ballot protocol or authentication rules changed in this release.
+
+A subsequent documentation handoff adds root AGENTS.md, a current continuation guide and a curated devlog entry, and replaces stale setup instructions. Live revision numbers should always be checked rather than inferred from historical validation entries.

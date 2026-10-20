@@ -14,7 +14,7 @@ await writeFile(new URL('../dist/lab.html',import.meta.url),await readFile(new U
 // Publish chronological project records, including the unedited essay snapshot.
 await mkdir(new URL('../dist/devlog/',import.meta.url),{recursive:true});
 const entries=[];
-for(const filename of ['20261020-first-draft.md','20261020-combined-app.md','20261020-topics-and-agents.md','20261020-working-sketch-v0.4.md','20261020-essay-first-draft.md']){
+for(const filename of ['20261020-first-draft.md','20261020-combined-app.md','20261020-topics-and-agents.md','20261020-digital-voting-and-next-steps.md','20261020-working-sketch-v0.4.md','20261020-essay-first-draft.md']){
   const markdown=await readFile(new URL('../devlog/'+filename,import.meta.url),'utf8');
   const title=markdown.split('\n').find(line=>line.startsWith('# '))?.slice(2)||filename;
   const slug=filename.slice(0,-3);

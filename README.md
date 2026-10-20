@@ -2,6 +2,10 @@
 
 An experimental, unofficial voting laboratory and companion essay. Theory and working software evolve together.
 
+## Continuing this project
+
+Start with [docs/HANDOFF.md](docs/HANDOFF.md), then the latest devlog entry it identifies. [AGENTS.md](AGENTS.md) makes this reading order explicit for coding assistants working in this checkout. The handoff records preserved source, current features, deployment, validation and next work; conversation history is not required.
+
 ## Current app
 
 Visitors can create a topic, publish a question with 2–8 fixed choices, and share its ballot URL. Creating topics and voting require attest.monster sign-in; reading and checking public records stays open. The Svelte interface combines a ballot and review step with browser-side RSA-OAEP encryption, ciphertext receipts, Ed25519 signed hash-linked records, browser verification, downloadable evidence and an independent checker. Fastify serves the app from Cloud Run; Neon PostgreSQL serializes ballot writes across instances. Encryption and signing keys persist in Secret Manager and must match the election's public keys in the database.
@@ -10,7 +14,7 @@ The server can decrypt ballots and computes the demonstration totals. Repeat par
 
 ## Local development
 
-Requires Node 22 or newer. Install with `npm ci`, run `npm run db:migrate`, `npm run build`, `npm test`, `npm run test:original`, then `npm start`. The app opens at http://localhost:8080; `npm run dev` provides frontend development alongside the backend.
+Requires Node 22 or newer. Install with `npm ci`, then run `npm run build`, `npm test` and `npm run test:original`. Use the isolated-environment commands in [the handoff](docs/HANDOFF.md) for database tests and a preview on port 8083 or 8084. On this workstation `.env.local` contains production configuration, so do not use the default migration/test/start commands without checking their target. `npm run dev` provides frontend development alongside the backend.
 
 Use an isolated Neon branch for development. `DATABASE_URL` is the pooled connection; migrations prefer `DATABASE_URL_UNPOOLED`. `VOTING_KEYS` is a JSON bundle containing matching encryption and signing public/private PEM keys. Generate development keys explicitly with the exported `generateKeys()` function in `server/protocol.js`; never commit them or reuse development keys in production. Without keys the development server reports the ballot service unavailable; production refuses startup. `.env.local` and `.env` are loaded by npm start and excluded from Git/container uploads.
 

@@ -1,6 +1,6 @@
 # Vote Anyway — work checklist
 
-Updated October 20, 2026. This file distinguishes recovered source, missing source, implemented features, and future ideas. A link or summary is not evidence that the underlying artifact has been recovered.
+Updated October 20, 2026. Start with `docs/HANDOFF.md` for current state and continuation instructions. This backlog retains historical milestones as well as future work; the source preservation checklist is complete.
 
 ## Migration audit: recover the existing work first
 
@@ -12,7 +12,7 @@ Updated October 20, 2026. This file distinguishes recovered source, missing sour
 - [x] Record the technology choices and main product concepts in `docs/PROJECT.md` and the devlogs.
 - [x] Establish GitHub as the source of truth and deploy the site to Cloud Run with Neon receipt persistence.
 
-### Missing original artifacts — highest priority
+### Original source archive — completed
 
 - [x] Retrieve `vote-anyway-project-20261020.zip` from **Digital voting article framing**, conversation `6ad56b00-2c04-83ea-a361-144e5f98eea5`. Original path: `/mnt/data/vote-anyway-project-20261020.zip`.
 - [x] Inspect and import original `content/appendices/security.md`.
@@ -70,7 +70,7 @@ Keep limitations explicit: the demonstration has server-held decryption keys, no
 
 ## Platform development
 
-- [ ] Inspect attest.monster's actual protocol, claims, API, and latency; do not assume OIDC/OAuth. Keep it behind an identity adapter, separate from ballot storage.
+- [x] Inspect attest.monster's actual protocol, claims, API, and latency; do not assume OIDC/OAuth. Keep it behind an identity adapter, separate from ballot storage.
 - [ ] Define elections, questions, choices, voting methods, published policy versions, entitlements, submissions, eligibility decisions, accepted ballots, audit checkpoints, and tally artifacts.
 - [ ] Implement organizer authentication and election creation, preview, publication, opening, closing, adjudication, and audit states.
 - [ ] Lock/version rules before votes or results can influence later changes.
@@ -134,3 +134,10 @@ Keep limitations explicit: the demonstration has server-held decryption keys, no
 - [x] Update the existing Where we are page with current topics, authentication, agents and verification features, plus explicit limits and next steps.
 - [x] Publish a sourced runoff explanation and worked example, clearly labeled as a proposed feature.
 - [ ] Implement single-winner ranked ballots and round-by-round counting after defining closing, eligibility, repeat-vote, tie and incomplete-ranking policies.
+
+## Session continuity
+
+- [x] Add root `AGENTS.md` requiring the handoff, project brief and relevant devlog to be read before changes.
+- [x] Record current implementation, source map, validation, pending work and existing infrastructure in `docs/HANDOFF.md`.
+- [x] Replace stale setup/deployment guidance and publish a current development entry.
+- [ ] Keep the handoff and public feature plan synchronized with future substantive releases.

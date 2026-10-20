@@ -1,82 +1,63 @@
-# Deploy to Cloud Run with Neon PostgreSQL
+# Deploy the existing Vote Anyway service
 
-## Current deployment
+Read [HANDOFF.md](HANDOFF.md) first. The service, database, accounts and secrets already exist. Run from `/Volumes/summer/projects/2026/vote-anyway`.
 
-- Project: `anselm-gcloud`
-- Region: `us-west1`
-- Service: `vote-anyway`
-- URL: https://vote-anyway-728854538261.us-west1.run.app
-- Runtime account: `vote-anyway-runtime@anselm-gcloud.iam.gserviceaccount.com` (no project roles)
-- Build account: `vote-anyway-build@anselm-gcloud.iam.gserviceaccount.com` (`roles/run.builder`, explicitly approved)
-- Neon project: `restless-resonance-93178261`, production branch (`br-twilight-feather-b40ynqpe`), organization `org-calm-sea-48867466`.
-- Database secret: `vote-anyway-database-url:1`, accessible only to the dedicated runtime account via a secret-scoped grant.
-- Application requests use the pooled connection; migrations use the direct connection.
+## Existing infrastructure
 
-When redeploying, include `--build-service-account=projects/anselm-gcloud/serviceAccounts/vote-anyway-build@anselm-gcloud.iam.gserviceaccount.com`. The project default build account lacks the required source-read permissions.
+- GCP project `anselm-gcloud`, region `us-west1`, service `vote-anyway`.
+- Canonical URL: https://vote-anyway-728854538261.us-west1.run.app/
+- Alternate service URL: https://vote-anyway-6zjzomqhbq-uw.a.run.app/
+- Candidate tag: https://combined---vote-anyway-6zjzomqhbq-uw.a.run.app/
+- Runtime account: `vote-anyway-runtime@anselm-gcloud.iam.gserviceaccount.com`, with secret-scoped access.
+- Build account: `vote-anyway-build@anselm-gcloud.iam.gserviceaccount.com`, with `roles/run.builder`. The default build account lacks required permissions.
+- Neon org `org-calm-sea-48867466`, project `restless-resonance-93178261`, production branch `br-twilight-feather-b40ynqpe`.
+- Runtime secrets: `DATABASE_URL=vote-anyway-database-url:1`, `VOTING_KEYS=vote-anyway-voting-keys:1`.
 
-## Prerequisites
+Never print connection strings or private keys. `.env*`, `.neon`, generated keys and archived runtime data must stay out of Git and source uploads. Do not rotate or regenerate voting keys for an existing election: startup checks the database’s recorded public keys. A new key/election strategy requires an explicit design.
 
-Sign in with `gcloud auth login`. Select an intended Google Cloud project with billing. Confirm the account/project before deploying; the workstation default is not automatically the correct project. Create a Neon project and obtain its pooled PostgreSQL connection string with TLS enabled.
+## Database changes
 
-Never commit `.env` or paste database credentials into GitHub. Store `DATABASE_URL` in Google Secret Manager as `vote-anyway-database-url` and grant the runtime service account access to that secret only. Configure a dedicated runtime service account; do not reuse broad owner credentials.
+Migrations 001–004 establish legacy practice receipts, encrypted election/ballot records, topic metadata, authentication nonces and agent grants. The migration runner maintains `schema_migrations` and holds an advisory transaction lock; migrations run separately from instance startup.
 
-## Database
+Test changes on an isolated Neon branch first. The development branch `dev-ballot-migration-20261020` (`br-fragrant-morning-b43xf5jq`) expires October 27, 2026. Its ignored credentials and keys are in `.env.ballot-test`; renew or replace it when needed. Production `.env.local` has not been repointed.
 
-Neon CLI setup uses the existing project, not a new one:
-
-```sh
-npx --yes neon@latest init -y --org-id org-calm-sea-48867466 --project-id restless-resonance-93178261 --branch production --services postgres
-npx --yes neon@latest deploy
-```
-
-Complete the browser login if requested. Deployment pulls `DATABASE_URL` and `DATABASE_URL_UNPOOLED` into ignored `.env.local`. Then:
+With an explicitly verified test environment:
 
 ```sh
-npm ci
-npm run db:migrate
-npm run test:db
+node --env-file=.env.ballot-test scripts/migrate.js
+node --env-file=.env.ballot-test --test test/*.test.js
 ```
 
-The migration is idempotent and creates only `practice_receipts`. Back up database data before later schema changes. The initial migration is run separately rather than by every Cloud Run instance.
+Migration connections prefer `DATABASE_URL_UNPOOLED`; application requests use pooled connections. Review the target and backup/rollback plan before applying new migrations to production. Do not use `npm run test:db` casually: its default env-file loading may target production on this workstation.
 
-## Container deployment
+## Build and candidate deployment
 
-The Dockerfile builds the frontend, installs only production dependencies in the final image, and runs as the unprivileged `node` user. Cloud Run builds directly from source with Cloud Build and Artifact Registry.
-
-Replace the uppercase placeholders after confirming the target project, runtime identity, and region:
+Inspect `git status`, the active gcloud account and current traffic. Pass the project explicitly. Build and run checks appropriate to the change; source deployment builds again in Cloud Build.
 
 ```sh
-gcloud services enable run.googleapis.com cloudbuild.googleapis.com artifactregistry.googleapis.com secretmanager.googleapis.com --project=PROJECT_ID
-gcloud run deploy vote-anyway \
-  --source . \
-  --project PROJECT_ID \
-  --region us-west1 \
-  --service-account RUNTIME_SERVICE_ACCOUNT \
-  --allow-unauthenticated \
-  --min-instances 0 \
-  --max-instances 2 \
-  --memory 512Mi \
-  --cpu 1 \
-  --concurrency 40 \
-  --set-secrets DATABASE_URL=vote-anyway-database-url:latest
+npm run build
+npm test
+npm run test:original
+gcloud run services describe vote-anyway --project=anselm-gcloud --region=us-west1 --format='json(status.traffic,status.latestReadyRevisionName)'
+gcloud run deploy vote-anyway --source . --project=anselm-gcloud --region=us-west1 --service-account=vote-anyway-runtime@anselm-gcloud.iam.gserviceaccount.com --build-service-account=projects/anselm-gcloud/serviceAccounts/vote-anyway-build@anselm-gcloud.iam.gserviceaccount.com --allow-unauthenticated --min-instances=0 --max-instances=2 --memory=512Mi --cpu=1 --concurrency=40 --set-secrets=DATABASE_URL=vote-anyway-database-url:1,VOTING_KEYS=vote-anyway-voting-keys:1 --no-traffic --tag=combined --quiet
 ```
 
-To deploy the browser-only site first, omit `--set-secrets`. The UI clearly identifies that mode; receipt writes return 503 instead of inventing persistence. The public site is explicitly requested by Anselm; `--allow-unauthenticated` enables access to this practice app, not access to Google Cloud administration or the database.
+`--allow-unauthenticated` permits public HTTP access to the site. Application authentication still gates topic creation and voting. Production startup requires the database and voting-key bundle. There is no supported production “omit the secrets” shortcut.
 
-## Verification
+The Dockerfile builds on Node 22, installs only runtime dependencies in the final image, and runs as an unprivileged user. It copies `server/`, `scripts/`, `migrations/` and the built `dist/`.
 
-Open the returned HTTPS URL. Try a ballot, download its receipt, and verify the code. With Neon configured, check that the code can be found from another browser and after redeployment. Check `/api/health` reports `postgres`. Inspect logs without printing credentials. The receipt database is not an election tally.
+## Verify, promote and retain rollback
 
-Set budgets/alerts and monitor usage as the experiment grows. Zero minimum instances and a two-instance ceiling limit compute scaling but do not cap all cloud charges.
+Check the candidate URL before promotion. Inspect `/api/health` and `/api/config`; verify public reading pages, routes and navigation; check that unsigned topic/vote writes return 401. Retain a public board/key/checkpoint from before deployment and verify continuity afterward with `scripts/verify-log.mjs`. Avoid creating unnecessary production topics or ballots. Validate changed flows on the isolated database; the owner completes passkey prompts.
 
-References: [Cloud Run source deployment](https://docs.cloud.google.com/run/docs/deploying-source-code), [Neon connections](https://neon.com/docs/connect/connect-from-any-app).
+Promote only the new revision name returned by the successful deployment, replacing `VERIFIED_REVISION` below. Record the previously serving revision before promotion.
 
-## Combined encrypted-ballot release
+```sh
+gcloud run services update-traffic vote-anyway --project=anselm-gcloud --region=us-west1 --to-revisions=VERIFIED_REVISION=100 --quiet
+```
 
-Run migrations 001 and 002 before deploying. The migration ledger and advisory transaction lock make repeat runs safe. Keep the previous revision available for rollback; the schema changes are additive and the original receipt table remains intact.
+Check the canonical public URL after promotion. To roll back, use the same traffic command with the previously recorded compatible revision. Do not choose a revision solely because its number looks recent. Check database compatibility before rollback if schemas changed.
 
-Cloud Run requires `DATABASE_URL=vote-anyway-database-url:1` and `VOTING_KEYS=vote-anyway-voting-keys:1` through Secret Manager. The runtime service account has secret-scoped accessor access. Never regenerate the voting keys on restart or replace them for the same election ID. A mismatched bundle causes startup failure. New election keys need a new, explicitly designed election identity and migration.
+Authentication defaults allow the canonical service origin, alternate service origin and `combined` tag. `AUTH_ORIGINS` can explicitly configure this allowlist. Development defaults are `http://localhost:8083` and `http://localhost:8084`. Attest status verification uses HTTPS; the app has no provider client secret. The pinned provider code and MIT license are under `scripts/attest/`.
 
-The development branch `dev-ballot-migration-20261020` expires October 27. Its credentials and keys are in ignored `.env.ballot-test`; production environment files were not repointed.
-
-The topics/authentication release also requires migrations 003 and 004. The server verifies attest status over HTTPS without a provider client secret. `AUTH_ORIGINS` is an explicit comma-separated allowlist of this application's origins, not the identity provider origin. Its production defaults include the canonical service URL, its alternate Cloud Run URL, and the `combined` tag. Auth replay nonces and app-specific agent grants use separate tables. The pinned attest client and verifier are shipped under `scripts/attest/` with their MIT license.
+Budget alerts, monitoring, retention/restore drills and a custom domain remain backlog items. The two-instance ceiling and zero minimum instances do not cap every possible cloud charge.
