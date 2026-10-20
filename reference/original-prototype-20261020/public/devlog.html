@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Development log · Vote Anyway</title><link rel="stylesheet" href="/style.css"></head><body><header class="topbar"><nav class="nav" aria-label="Primary"><a class="brand" href="/">VOTE<b> ANYWAY</b></a><div class="navlinks"><a href="/essay.html">Essay</a><a href="/appendix-security.html">Research</a><a href="/devlog.html">Devlog</a><a class="action" href="/lab.html">Try the lab →</a></div></nav></header><main class="article"><div class="paperhead"><span class="kicker">PUBLIC DEVELOPMENT JOURNAL</span><div class="subnav"><a href="/">← Vote Anyway</a> · <a href="/appendix-security.html">Security</a> · <a href="/appendix-democracy.html">Democracy</a> · <a href="/appendix-prototype.html">Prototype</a></div></div><h1>2026-10-20 — First draft and runnable experiment</h1>
+<h2>Thesis</h2>
+<p>A civic right has two engineering requirements: eligible people must be able to participate, and the votes they successfully cast must be recorded and counted faithfully. &quot;Paper versus computers&quot; is too narrow a frame. Ask what guarantees a complete system has, what fails, what can be independently checked, and what happens to democracy when participation becomes much less cumbersome.</p>
+<h2>Editorial decisions</h2>
+<ul>
+<li>Rename the essay and the project <strong>Vote Anyway</strong>.</li>
+<li>Keep the public essay short and human; use technical appendices for cryptographic designs, historical references, empirical questions, and objections.</li>
+<li>Separate Part I (technology) and Part II (implications).</li>
+<li>Keep broader systems problems such as externalities and digital twins as context only.</li>
+<li>Credit <strong>Brad deGraf</strong> for his involvement in <strong>Smartocracy</strong>, including coauthorship of the 2007 paper with Marko Rodriguez, Daniel Steinbock, Jennifer Watkins, Carlos Gershenson, Johan Bollen and Victor Grey.</li>
+<li>Preserve the author's concern about practical voter suppression and avoid asserting unsupported motives.</li>
+</ul>
+<h2>Praxis: build to learn</h2>
+<p>Start a parallel-voting research site, explicitly <strong>not an official election</strong>. It should eventually mirror sourced ballot questions while preserving conspicuous notices and linking users to real voting information. Begin with an entirely fictional question to avoid confusion. Ship a phone-friendly ballot, a receipt, independently inspectable integrity evidence, and a development log.</p>
+<h2>What we actually built in this iteration</h2>
+<ul>
+<li>Published essay and appendices as static pages served from this project.</li>
+<li>Node 22 server, browser-side encryption, persisted encrypted ballot records.</li>
+<li>Signed hash-chain bulletin board and an independent log verifier.</li>
+<li>Honest research-stage limitations; particularly, the demo tally is computed by the server and is <strong>not</strong> E2E-verifiable.</li>
+<li>Tests for valid submission, rejected malformed selections, receipt inclusion, and tampering detection.</li>
+</ul>
+<h2>Questions uncovered</h2>
+<ol>
+<li>What evidence would let the same phone detect a client that lies about the encrypted selection?</li>
+<li>Can public witnesses prevent quiet rewrites of the entire election history?</li>
+<li>How to verify tally correctness without revealing individual ballots or trusting one decryption server?</li>
+<li>What workable identity/uniqueness assumptions make a parallel trial useful without collecting invasive personal data?</li>
+<li>Could subject-specific delegation be compatible with receipt-freeness, particularly when the delegation graph itself is identifiable?</li>
+<li>How to test coercion resistance honestly without creating a misleading decoy UI?</li>
+</ol>
+<h2>Next milestone</h2>
+<p>Specify and integrate a reviewed E2E voting protocol. Verify cast-as-intended, recorded-as-cast, and tallied-as-recorded <em>separately</em>. Do not call this demo a secure real-world election until independent scrutiny justifies that language.</p>
+</main><footer class="sitefoot"><div class="wrap"><span>Vote Anyway · Open research, not an election authority</span><span><a href="/essay.html">Essay</a> · <a href="/appendix-security.html">Appendices</a> · <a href="/devlog.html">Devlog</a></span></div></footer></body></html>

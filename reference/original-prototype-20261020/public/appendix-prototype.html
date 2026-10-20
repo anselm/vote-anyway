@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Prototype design · Vote Anyway</title><link rel="stylesheet" href="/style.css"></head><body><header class="topbar"><nav class="nav" aria-label="Primary"><a class="brand" href="/">VOTE<b> ANYWAY</b></a><div class="navlinks"><a href="/essay.html">Essay</a><a href="/appendix-security.html">Research</a><a href="/devlog.html">Devlog</a><a class="action" href="/lab.html">Try the lab →</a></div></nav></header><main class="article"><div class="paperhead"><span class="kicker">RESEARCH APPENDIX C</span><div class="subnav"><a href="/">← Vote Anyway</a> · <a href="/appendix-security.html">Security</a> · <a href="/appendix-democracy.html">Democracy</a> · <a href="/appendix-prototype.html">Prototype</a></div></div><h1>Appendix C — Vote Anyway as praxis</h1>
+<p><strong>Stage 0.5: an unofficial, fictional test ballot, not an election system.</strong> <a href="/lab.html">Try the prototype</a> and read the <a href="/devlog.html">devlog</a>.</p>
+<p>The larger hypothesis is that a digital ballot can become a comprehensible, independently checkable civic transaction. This small project publishes its code and its shortcomings so the claim can be improved by implementation, review, and testing.</p>
+<h2>Current architecture</h2>
+<ol>
+<li>A Node 22 server publishes a demonstration ballot, its RSA-OAEP public encryption key, and an Ed25519 bulletin-board verification key.</li>
+<li>A browser encrypts the chosen answer before transmission. It sends ciphertext and never sends the plaintext choice to the API.</li>
+<li>The server decrypts to validate the submission and calculate a tally. It writes only ciphertext to the application record.</li>
+<li>The server signs each record and links records by SHA-256 hash. It returns a receipt derived from the ciphertext.</li>
+<li>A person downloads the publicly available log, obtains the authentic public verification key through a trustworthy channel, and runs the independent checker.</li>
+</ol>
+<p><strong>What it proves:</strong> Given an authentic verification key and a fixed known log history, the verifier can detect changed records and determine whether a supplied ciphertext receipt appears in the log.</p>
+<p><strong>What it does not prove:</strong> The server computes the tally and can misreport it. A malicious host might equivocate by showing different signed logs to different visitors. The operator can decrypt votes, and timing/network logs could correlate participants. Unrestricted volunteer casting permits duplicate submissions. The browser can misrepresent selections. This is not end-to-end verifiable voting and is not suitable for consequential elections.</p>
+<h2>Milestones</h2>
+<table>
+<thead>
+<tr>
+  <th>Stage</th>
+  <th>Experiment</th>
+  <th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0 — Interface</td>
+  <td>Explicit unofficial ballot, no official contests</td>
+  <td>Mobile usability and comprehension</td>
+</tr>
+<tr>
+  <td>0.5 — Published record</td>
+  <td>Browser encryption, tracker, signed ciphertext chain</td>
+  <td>Receipts and third-party log verification</td>
+</tr>
+<tr>
+  <td>1 — Verifiable election</td>
+  <td>Reviewed cast-as-intended mechanism; published cryptographic tally proofs</td>
+  <td>Independent verifier produces the final tally</td>
+</tr>
+<tr>
+  <td>2 — Adversarial lab</td>
+  <td>Simulated compromised clients, duplicate ballots, dropped records and outages</td>
+  <td>Documented detections and failures</td>
+</tr>
+<tr>
+  <td>3 — Coercion/identity research</td>
+  <td>Revoting, deniable credentials, privacy, eligibility</td>
+  <td>Research-backed threat claims</td>
+</tr>
+<tr>
+  <td>4 — Delegation</td>
+  <td>Domain-scoped and revocable trust delegation</td>
+  <td>Comprehensible proxy-flow semantics</td>
+</tr>
+<tr>
+  <td>5 — Mirror ballot</td>
+  <td>Import authoritative official question text</td>
+  <td>Clear provenance, distinction from real election, no representative claims</td>
+</tr>
+</tbody>
+</table>
+<h2>The eventual parallel-election experiment</h2>
+<p>Selected authentic ballot questions may be reproduced with documented sources, jurisdiction, effective date and exact wording. The site must prominently state on <strong>every ballot and confirmation page</strong>: <strong>“EXPERIMENTAL VOTE — NOT AN OFFICIAL ELECTION. Participating here does not cast or change your real ballot.”</strong> It must not use government seals or impersonate administrators. Participants should be directed to authoritative official voting information for the real process. Any volunteer results must be clearly described as self-selected and <strong>not</strong> a valid audit of official election results.</p>
+<p>We begin instead with a fictional neighborhood question to avoid misrepresentation while core protocol features remain preliminary.</p>
+</main><footer class="sitefoot"><div class="wrap"><span>Vote Anyway · Open research, not an election authority</span><span><a href="/essay.html">Essay</a> · <a href="/appendix-security.html">Appendices</a> · <a href="/devlog.html">Devlog</a></span></div></footer></body></html>

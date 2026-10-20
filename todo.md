@@ -14,21 +14,21 @@ Updated October 20, 2026. This file distinguishes recovered source, missing sour
 
 ### Missing original artifacts — highest priority
 
-- [ ] Retrieve `vote-anyway-project-20261020.zip` from **Digital voting article framing**, conversation `6ad56b00-2c04-83ea-a361-144e5f98eea5`. Original path: `/mnt/data/vote-anyway-project-20261020.zip`.
-- [ ] Inspect and import original `content/appendices/security.md`.
-- [ ] Inspect and import original `content/appendices/democracy.md`.
-- [ ] Inspect and import original `content/appendices/prototype.md`.
-- [ ] Recover original `docs/editorial-roadmap.md` and `docs/threat-model.md`.
-- [ ] Recover `voting_unbundled_working_outline_v0.4.md`, the fuller research notebook. Retain earlier versions if obtainable; v0.3 is an earlier reference, not the latest known outline.
-- [ ] Preserve the original prototype source and tests in a reference directory or branch before porting them.
+- [x] Retrieve `vote-anyway-project-20261020.zip` from **Digital voting article framing**, conversation `6ad56b00-2c04-83ea-a361-144e5f98eea5`. Original path: `/mnt/data/vote-anyway-project-20261020.zip`.
+- [x] Inspect and import original `content/appendices/security.md`.
+- [x] Inspect and import original `content/appendices/democracy.md`.
+- [x] Inspect and import original `content/appendices/prototype.md`.
+- [x] Recover original `docs/editorial-roadmap.md` and `docs/threat-model.md`.
+- [x] Recover `voting_unbundled_working_outline_v0.4.md`, the fuller research notebook. Retain earlier versions if obtainable; v0.3 is an earlier reference, not the latest known outline.
+- [x] Preserve the original prototype source and tests in a reference directory or branch before porting them.
 - [ ] Save the complete implementation handoff from the original chat as a provenance document. It identifies substantially more work than the initial partial chat read revealed.
 - [ ] Audit the remaining original conversation for decisions not represented here; record source message/artifact references rather than relying on recollection.
 - [x] Compare the user-supplied essay and original devlog with recovered copies. Essay matches byte for byte; restored the devlog’s numbered question list to match its original.
 - [ ] Compare remaining recovered artifacts with originals as they become accessible; retain provenance and checksums.
 
-**Appendix status:** `/appendix-security.html`, `/appendix-democracy.html`, and `/appendix-prototype.html` currently display explicit recovery notices. They do **not** contain the original appendices. Likewise, `/lab.html` is a recovery page, not the original voting laboratory. Never mark these recovered merely because the URLs return 200.
+**Appendix status:** the three original published appendices are now restored from the supplied ZIP under `content/appendices/` and published at their original URLs. The v0.4 working sketch, including eleven exploratory appendix sections, citations, candidate prose, and version history, is in `devlog/20261020-working-sketch-v0.4.md`. These are distinct artifacts. `/lab.html` remains a recovery/migration notice until the original demo is ported.
 
-The original chat's archive download did not produce an accessible local file. The essay and original devlog were instead recovered through document previews. If the archive remains inaccessible, obtain the original files individually; do not replace them with newly invented summaries.
+The original source is preserved under `reference/original-prototype-20261020/`, excluding generated keys and ballot data. The archive's essay and devlog exactly match the supplied originals. The sketch was recovered from the original chat's rendered document and checked for intact transfer, not original-file byte identity.
 
 **Archive handling:** the handoff reports generated development private keys in `data/keys.json` and sample records in `data/board.json`. Do not commit or deploy these keys. Import source separately from generated data and create fresh production secrets where needed.
 
@@ -49,7 +49,7 @@ Keep limitations explicit: the original demo reportedly has server-held decrypti
 
 ## Research publication and editorial continuity
 
-- [ ] Publish recovered appendices directly from their Markdown source, with working cross-links.
+- [x] Publish recovered appendices directly from their Markdown source, with working cross-links.
 - [x] Publish the actual devlog on the website, including the full original essay as `devlog/20261020-essay-first-draft.md`.
 - [ ] Restore citations and third-party research from the appendices: cryptographic protocols, security objections, Estonia, delegation, incentives, and voting methods.
 - [ ] Preserve explicit credit to Brad deGraf and the other Smartocracy authors. Keep the 2007 paper and profile references.

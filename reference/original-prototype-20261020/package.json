@@ -1,0 +1,14 @@
+{
+  "name": "vote-anyway",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Vote Anyway: essay, research appendices, and an explicitly unofficial internet-voting laboratory",
+  "scripts": {
+    "dev": "node --watch server/index.mjs",
+    "start": "node server/index.mjs",
+    "test": "node --test test/*.test.mjs",
+    "verify": "node scripts/verify-log.mjs"
+  },
+  "engines": {"node": ">=22"}
+}

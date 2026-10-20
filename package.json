@@ -10,9 +10,10 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build && node scripts/build-essay.js",
     "start": "node --env-file-if-exists=.env.local --env-file-if-exists=.env server/index.js",
-    "test": "node --test",
+    "test": "node --test test/*.test.js",
     "db:migrate": "node --env-file-if-exists=.env.local --env-file-if-exists=.env scripts/migrate.js",
-    "test:db": "node --env-file-if-exists=.env.local --env-file-if-exists=.env --test test/postgres.integration.test.js"
+    "test:db": "node --env-file-if-exists=.env.local --env-file-if-exists=.env --test test/postgres.integration.test.js",
+    "test:original": "npm test --prefix reference/original-prototype-20261020"
   },
   "dependencies": {
     "@fastify/helmet": "^13.0.0",

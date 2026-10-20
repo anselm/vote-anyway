@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Voting security · Vote Anyway</title><link rel="stylesheet" href="/style.css"></head><body><header class="topbar"><nav class="nav" aria-label="Primary"><a class="brand" href="/">VOTE<b> ANYWAY</b></a><div class="navlinks"><a href="/essay.html">Essay</a><a href="/appendix-security.html">Research</a><a href="/devlog.html">Devlog</a><a class="action" href="/lab.html">Try the lab →</a></div></nav></header><main class="article"><div class="paperhead"><span class="kicker">RESEARCH APPENDIX A</span><div class="subnav"><a href="/">← Vote Anyway</a> · <a href="/appendix-security.html">Security</a> · <a href="/appendix-democracy.html">Democracy</a> · <a href="/appendix-prototype.html">Prototype</a></div></div><h1>Appendix A — Security and the actual claims</h1>
+<p>This appendix is the working technical support for <a href="/essay.html">Vote Anyway</a>. It distinguishes a digitally processed ballot, a cryptographically verifiable election, and an unsupervised internet vote cast on an ordinary phone.</p>
+<h2>Three separate properties</h2>
+<ol>
+<li><strong>Cast as intended:</strong> A voter has a meaningful way to check that their actual choice was encoded correctly.</li>
+<li><strong>Recorded as cast:</strong> A voter can check that the ballot they cast was accepted and remains on the election record.</li>
+<li><strong>Tallied as recorded:</strong> An observer can independently check that recorded ballots produce the claimed aggregate tally.</li>
+</ol>
+<p>A simple tracker generally establishes neither (1) nor (3) by itself. It can assist with (2). A server that merely signs or hashes its database remains trusted for many critical operations. <a href="https://electionguard.vote/spec/">ElectionGuard's published specification</a> describes challenge ballots, election records and verification proofs.</p>
+<h2>Why money isn't a direct analogy</h2>
+<p>Payments, HTTPS, authenticated transactions, resilient databases and distributed ledgers provide genuine evidence that complex transactions can be implemented reliably. But financial systems commonly retain identity-linked records and can dispute, reverse or compensate transactions. Secret-ballot elections also require privacy, eligibility, correct intent on an untrusted endpoint, and resistance to coercion and vote buying. A voter must be able to confirm inclusion without being able to prove their private choice to a buyer. A false comparison is neither necessary nor useful.</p>
+<h2>Physical systems have attack surfaces too</h2>
+<p>Paper offers human-readable inspection and software-independent recounts. It also requires physical access and custody arrangements that can fail. Long polling-place lines are access failures; they are not inherent to paper because mail voting, early voting, and better staffing can reduce them. An engineering comparison must define threat models for both complete systems, including denial of service and recovery of lost votes.</p>
+<h2>Open or conditional problems for remote voting</h2>
+<ul>
+<li><strong>Endpoint trust:</strong> A compromised phone can misrepresent what is encrypted. Challenge workflows, external verification and trusted channels add checks with their own assumptions.</li>
+<li><strong>Coercion and vote buying:</strong> At-home voting lacks a supervised private booth. Fake credentials, decoy presentations and revoting exist in research, but a fake page alone is not sufficient when someone can supervise or prevent later access.</li>
+<li><strong>Eligibility and uniqueness:</strong> Cryptography alone does not establish that one authorized human gets one vote.</li>
+<li><strong>Audit and observation:</strong> Publicly verifying mathematical proofs is not the same as independently verifying all enrollment and administrative processes.</li>
+<li><strong>Availability:</strong> Device loss, network interruptions, infrastructure outages, malware and DoS require tested remedies.</li>
+<li><strong>Ballot secrecy:</strong> An encrypted ballot may still be correlated using submission order, IP logs, authentication records, or key misuse.</li>
+</ul>
+<h2>Existing implementations and critiques</h2>
+<ul>
+<li><a href="https://electionguard.vote/spec/">ElectionGuard specifications</a>, <a href="https://electionguard.vote/overview/Glossary/">verification overview</a> and <a href="https://electionguard.vote/develop/Applications/">published verification record workflow</a>.</li>
+<li><a href="https://www.heliosvoting.org/faq">Helios</a>, a project for auditable online voting with explicit threat assumptions.</li>
+<li><a href="https://www.valimised.ee/en/internet-voting-estonia">Estonia election authority overview</a> and <a href="https://kov2025.valimised.ee/en/detailed-voting-result">2025 election results</a>, which recorded <strong>45.8%</strong> of valid local-election votes online. Smartphone voting and smartphone checking must not be conflated.</li>
+<li><a href="https://www.bk.admin.ch/en/e-voting">Swiss Federal Chancellery on e-voting</a>, including limited trials.</li>
+<li><a href="https://www.nationalacademies.org/read/25120/chapter/7">National Academies, <em>Securing the Vote</em> (2018)</a>, a central argument for auditable paper and against currently available internet voting.</li>
+<li><a href="https://academic.oup.com/cybersecurity/article/7/1/tyaa025/6137886"><em>Going from Bad to Worse: From Internet Voting to Blockchain Voting</em></a>, a serious research critique.</li>
+</ul>
+<h2>What this project's initial prototype really checks</h2>
+<p>The prototype encrypts submissions on the client and publicly signs a ciphertext log. It lets a receipt holder independently check ciphertext inclusion and log signature/chain consistency. It <strong>does not</strong> offer independent tally proofs or establish intent, uniqueness, coercion resistance or protection against an operator presenting conflicting signed records. These are explicit open milestones, not hidden implementation details. See <a href="/appendix-prototype.html">Prototype appendix</a>.</p>
+</main><footer class="sitefoot"><div class="wrap"><span>Vote Anyway · Open research, not an election authority</span><span><a href="/essay.html">Essay</a> · <a href="/appendix-security.html">Appendices</a> · <a href="/devlog.html">Devlog</a></span></div></footer></body></html>

@@ -35,4 +35,4 @@ Anselm selected `anselm-gcloud`. The site is live at https://vote-anyway-7288545
 
 ## Migration completeness
 
-See [`../todo.md`](../todo.md) for the audited recovery checklist. The full essay and original first-draft devlog are recovered. The original prototype archive, three appendices, threat model, editorial roadmap, and fuller v0.4 outline are still missing. Appendix routes currently show recovery notices, not original text. The current practice interface is not a feature-complete port of the original encrypted-ballot demo.
+See [`../todo.md`](../todo.md) for the audited recovery checklist. The full essay and original first-draft devlog are recovered. The supplied original prototype source, three appendices, threat model, and editorial roadmap are restored. The v0.4 working sketch is recovered in the devlog, including its research appendices and citations. Original prototype code is preserved under `reference/original-prototype-20261020/`, excluding generated keys/data. The current practice interface is not a feature-complete port of the original encrypted-ballot demo.
