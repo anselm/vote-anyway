@@ -84,5 +84,3 @@ The interface could eventually begin with: **What are you trying to decide toget
 Today the app supports informal single-choice topics. The proposed next experiment is a single-winner ranked runoff, with explicit participation and counting rules. Multi-seat methods, resource allocation, deliberation and delegation remain further work. The [current feature plan](/about#where-we-are) distinguishes what is working from what we want to explore.
 
 The aim is to make the choices in democratic machinery visible: what people can express, whose voices the outcome includes, and how anyone can check the path from participation to decision.
-
-[Research & sources](/research.html) · [Read the essay](/essay.html) · [Development log](/devlog.html)
