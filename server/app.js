@@ -1,3 +1,4 @@
+import {pagePaths} from '../scripts/page-routes.mjs';
 import Fastify from 'fastify';
 import helmet from '@fastify/helmet';
 import rateLimit from '@fastify/rate-limit';
@@ -64,7 +65,7 @@ export async function createApp({store=null,voting=null,authenticate=null,authSe
   app.post('/api/agents/:id/revoke',{schema:{params:grantParams}},agents(req=>authService.revokeAgent(req.params.id,req.identity)));
   if(staticFiles){
     await app.register(fastifyStatic,{root:fileURLToPath(new URL('../dist/',import.meta.url))});
-    app.get('/topic/:id',(_req,reply)=>reply.sendFile('index.html'));
+    for(const path of [...Object.values(pagePaths).filter(path=>path!=='/'),'/topic/:id','/topic/:id/verify','/topic/:id/board']) app.get(path,(_req,reply)=>reply.sendFile('index.html'));
     app.setNotFoundHandler((req,reply)=>req.url.startsWith('/api/')?reply.code(404).send({error:'Not found'}):reply.code(404).type('text/plain').send('Page not found'));
   }
   return app;

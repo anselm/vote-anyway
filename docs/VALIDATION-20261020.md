@@ -13,3 +13,11 @@ Browser checks covered the original encrypted choose/review/submit/receipt flow,
 Code commit `c9059be` is deployed as Cloud Run revision `vote-anyway-00007-guy`, serving 100% of public traffic. GitHub Checks passed. After promotion, the canonical public URL passed authentication-gate checks, pre-deployment receipt/key continuity, all essay/appendix/outline pages, the curated devlog, system theme CSS, exact supplied photo bytes, API schema, and downloaded agent CLI/verifier execution. Anselm subsequently confirmed that sign-in works well on the public site on October 20, 2026, completing the owner-operated passkey round-trip check.
 
 Full isolated-Neon run: 10 tests passed, zero failures, zero skips. Offline/CI run: 7 passed and 3 database-dependent tests explicitly skipped. Original prototype test: 1 passed. Production build passed. No source prose or research appendices were changed.
+
+## Shareable pages and research navigation
+
+- Build passes. Offline suite: 7 passed, 3 database-dependent tests skipped. No database schema, ballot protocol or authentication rule changes.
+- Direct HTTP checks: all 13 tested app URL variants return the application; unknown pages and API routes return 404.
+- Browser checks: Topics and Start a vote have distinct paths; refresh, Back and Forward retain the correct page. Topic-specific receipt URLs prefill the receipt and link to the same topic’s public record.
+- Research index destinations and all eleven working-outline appendix anchors resolve. Original essay and three appendix Markdown sources remain unchanged.
+- Public Where we are updated to distinguish working features, present limitations and proposed runoff work.

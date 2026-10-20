@@ -60,8 +60,8 @@ Keep limitations explicit: the demonstration has server-held decryption keys, no
 
 - [x] Publish recovered appendices directly from their Markdown source, with working cross-links.
 - [x] Publish the actual devlog on the website, including the full original essay as `devlog/20261020-essay-first-draft.md`.
-- [ ] Restore citations and third-party research from the appendices: cryptographic protocols, security objections, Estonia, delegation, incentives, and voting methods.
-- [ ] Preserve explicit credit to Brad deGraf and the other Smartocracy authors. Keep the 2007 paper and profile references.
+- [x] Restore citations and third-party research from the appendices: cryptographic protocols, security objections, Estonia, delegation, incentives, and voting methods.
+- [x] Preserve explicit credit to Brad deGraf and the other Smartocracy authors. Keep the 2007 paper and profile references.
 - [ ] Keep the core essay concise and persuasive; put technical detail and previous work in appendices.
 - [ ] Retain theory → experiment → evidence → revision as the relationship between writing and software.
 - [ ] Distinguish digital transaction reliability from all secret-ballot requirements without diluting the essay's argument.
@@ -126,3 +126,11 @@ Keep limitations explicit: the demonstration has server-held decryption keys, no
 - [x] Confirm a live human passkey sign-in round trip with the owner. Anselm confirmed public-site sign-in works on October 20, 2026.
 - [ ] Define topic eligibility and one-person/one-vote or revoting policies. Authentication alone does not implement them.
 - [ ] Add topic management, closing and moderation; questions are currently immutable and open immediately.
+
+## Shareable pages and research navigation
+
+- [x] Give app pages ordinary URLs, including topic-specific receipt and record pages; preserve legacy ballot and agent links.
+- [x] Make all three companion appendices and the eleven outline appendices discoverable through Research & sources.
+- [x] Update the existing Where we are page with current topics, authentication, agents and verification features, plus explicit limits and next steps.
+- [x] Publish a sourced runoff explanation and worked example, clearly labeled as a proposed feature.
+- [ ] Implement single-winner ranked ballots and round-by-round counting after defining closing, eligibility, repeat-vote, tie and incomplete-ranking policies.

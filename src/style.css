@@ -29,3 +29,5 @@ footer{border-top:3px double var(--civic-strong-rule)}
 ::selection{background:var(--civic-accent);color:var(--civic-paper)}.topic-form textarea{resize:vertical}.panel label.option{display:flex;align-items:center;gap:12px}input,textarea{color:var(--civic-ink)}pre,code{overflow-wrap:anywhere}nav{gap:18px}
 
 .hero-photo{margin:0;align-self:center;border-top:3px solid var(--civic-accent);padding-top:12px}.hero-photo img{display:block;width:100%;height:auto;border:1px solid var(--civic-rule)}.hero-photo figcaption{font-size:11px;line-height:1.7;color:var(--civic-muted);padding:12px 0;border-bottom:1px solid var(--civic-rule)}
+
+.brand{text-decoration:none}.back{display:inline-block}.roadmap{scroll-margin-top:24px}
