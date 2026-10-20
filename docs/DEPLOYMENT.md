@@ -70,3 +70,11 @@ Open the returned HTTPS URL. Try a ballot, download its receipt, and verify the 
 Set budgets/alerts and monitor usage as the experiment grows. Zero minimum instances and a two-instance ceiling limit compute scaling but do not cap all cloud charges.
 
 References: [Cloud Run source deployment](https://docs.cloud.google.com/run/docs/deploying-source-code), [Neon connections](https://neon.com/docs/connect/connect-from-any-app).
+
+## Combined encrypted-ballot release
+
+Run migrations 001 and 002 before deploying. The migration ledger and advisory transaction lock make repeat runs safe. Keep the previous revision available for rollback; the schema changes are additive and the original receipt table remains intact.
+
+Cloud Run requires `DATABASE_URL=vote-anyway-database-url:1` and `VOTING_KEYS=vote-anyway-voting-keys:1` through Secret Manager. The runtime service account has secret-scoped accessor access. Never regenerate the voting keys on restart or replace them for the same election ID. A mismatched bundle causes startup failure. New election keys need a new, explicitly designed election identity and migration.
+
+The development branch `dev-ballot-migration-20261020` expires October 27. Its credentials and keys are in ignored `.env.ballot-test`; production environment files were not repointed.

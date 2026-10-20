@@ -92,3 +92,7 @@ There is now recovered source for the original code, three published appendices,
 ## Completion standard
 
 The port is complete only when a visitor can perform the original experiment on the deployed infrastructure, an independent tool can inspect its exported evidence, persistence/key continuity survive instance changes, and the claims match the tests. Source recovery, a prettier interface, and a successful deployment are each useful; none alone meets that standard.
+
+## Implementation follow-through
+
+The combined release implements the first six acceptance gates; see `devlog/20261020-combined-app.md` for evidence. The original source and prose remain unchanged. Production keys are a fresh Secret Manager version, the encrypted records use separate PostgreSQL tables, and prior fingerprint receipts remain readable. Full-log verification is deliberately retained for this small research demo, including before append; larger-scale incremental verification remains future work.

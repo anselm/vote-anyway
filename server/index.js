@@ -1,7 +1,10 @@
 import { createApp } from './app.js';
 import { postgresStore } from './store.js';
+import {votingStore} from './voting-store.js';
 const store=process.env.DATABASE_URL?postgresStore(process.env.DATABASE_URL):null;
-const app=await createApp({store,logger:true});
-app.addHook('onClose',async()=>{await store?.close();});
+if(process.env.NODE_ENV==='production'&&(!process.env.VOTING_KEYS||!process.env.DATABASE_URL))throw Error('Persistent voting keys and database are required in production');
+const voting=process.env.VOTING_KEYS&&process.env.DATABASE_URL?await votingStore(process.env.DATABASE_URL,JSON.parse(process.env.VOTING_KEYS)):null;
+const app=await createApp({store,voting,logger:true});
+app.addHook('onClose',async()=>{await store?.close();await voting?.close();});
 await app.listen({port:Number(process.env.PORT||8080),host:'0.0.0.0'});
 for(const signal of ['SIGINT','SIGTERM'])process.on(signal,async()=>{await app.close();process.exit(0);});

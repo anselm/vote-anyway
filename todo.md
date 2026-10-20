@@ -1,4 +1,4 @@
-# Vote Anyway — work and recovery checklist
+# Vote Anyway — work checklist
 
 Updated October 20, 2026. This file distinguishes recovered source, missing source, implemented features, and future ideas. A link or summary is not evidence that the underlying artifact has been recovered.
 
@@ -26,7 +26,7 @@ Updated October 20, 2026. This file distinguishes recovered source, missing sour
 - [x] Compare the user-supplied essay and original devlog with recovered copies. Essay matches byte for byte; restored the devlog’s numbered question list to match its original.
 - [ ] Compare remaining recovered artifacts with originals as they become accessible; retain provenance and checksums.
 
-**Appendix status:** the three original published appendices are now restored from the supplied ZIP under `content/appendices/` and published at their original URLs. The v0.4 working sketch, including eleven exploratory appendix sections, citations, candidate prose, and version history, is in `devlog/20261020-working-sketch-v0.4.md`. These are distinct artifacts. `/lab.html` remains a recovery/migration notice until the original demo is ported.
+**Appendix status:** the three original published appendices are now restored from the supplied ZIP under `content/appendices/` and published at their original URLs. The v0.4 working sketch, including eleven exploratory appendix sections, citations, candidate prose, and version history, is in `devlog/20261020-working-sketch-v0.4.md`. These are distinct artifacts. `/lab.html` now opens the combined encrypted-ballot experience.
 
 The original source is preserved under `reference/original-prototype-20261020/`, excluding generated keys and ballot data. The archive's essay and devlog exactly match the supplied originals. The sketch was recovered from the original chat's rendered document and checked for intact transfer, not original-file byte identity.
 
@@ -36,25 +36,25 @@ The original source is preserved under `reference/original-prototype-20261020/`,
 
 - [x] Compare original and current code, tests, threat model, and product intent. See [implementation audit](docs/IMPLEMENTATION-AUDIT.md).
 - [x] Probe the original verifier: valid-prefix truncation passes without an independently trusted checkpoint. Record this as a migration requirement, not a solved guarantee.
-- [ ] Establish original behavior/artifact compatibility tests before porting.
-- [ ] Design transactional ballot ordering and persistent election-scoped key initialization together; test on a development database branch.
-- [ ] Preserve current fingerprint receipts as practice records, separate from encrypted ballots.
-- [ ] Port and verify in the acceptance order in the audit; do not restore the original server wholesale.
+- [x] Establish original behavior/artifact compatibility tests before porting.
+- [x] Design transactional ballot ordering and persistent election-scoped key initialization together; test on a development database branch.
+- [x] Preserve current fingerprint receipts as practice records, separate from encrypted ballots.
+- [x] Port and verify in the acceptance order in the audit; do not restore the original server wholesale.
 
 ## Preserve the original prototype's capabilities
 
-The current app is a new practice interface, **not a completed port**. It stores randomized fingerprints, keeps selections in the browser, and has no tally. The handoff reports the earlier demo already had the following; verify its source and tests, then preserve/port them:
+The combined app retains Svelte, Cloud Run, Neon and the civic Americana design, and ports the original experiment’s behavior. Earlier fingerprint receipts remain separate and readable.
 
-- [ ] Browser-side RSA-OAEP ballot encryption and validated ciphertext submission.
-- [ ] Ciphertext-based receipt generation and lookup.
-- [ ] Hash-linked ballot records signed with Ed25519.
-- [ ] Downloadable public bulletin board and signing public key.
-- [ ] Independent `scripts/verify-log.mjs` record-integrity / receipt-inclusion verifier.
-- [ ] Server-computed demonstration tally.
-- [ ] Tests for valid submission, malformed input, receipt inclusion, tamper detection, and tally behavior.
-- [ ] Replace original filesystem persistence with transactional PostgreSQL storage before deploying that demo on Cloud Run.
+- [x] Browser-side RSA-OAEP ballot encryption and validated ciphertext submission.
+- [x] Ciphertext-based receipt generation and lookup.
+- [x] Hash-linked ballot records signed with Ed25519.
+- [x] Downloadable public bulletin board and signing public key.
+- [x] Independent `scripts/verify-log.mjs` record-integrity / receipt-inclusion verifier.
+- [x] Server-computed demonstration tally.
+- [x] Tests for valid submission, malformed input, receipt inclusion, tamper detection, and tally behavior.
+- [x] Replace original filesystem persistence with transactional PostgreSQL storage before deploying that demo on Cloud Run.
 
-Keep limitations explicit: the original demo reportedly has server-held decryption keys, no eligibility or uniqueness enforcement, no cast-as-intended proof, no independent tally proof, no coercion resistance, and no protection against a sole operator replacing history and keys. Record integrity is not independent tally verification.
+Keep limitations explicit: the demonstration has server-held decryption keys, no eligibility or uniqueness enforcement, no cast-as-intended proof, no independent tally proof, no coercion resistance, and no protection against a sole operator replacing history and keys. Record integrity is not independent tally verification.
 
 ## Research publication and editorial continuity
 
@@ -92,13 +92,23 @@ Keep limitations explicit: the original demo reportedly has server-held decrypti
 - [x] Use pooled application connections and direct migration connections; ignore dotenv and `.neon` in Git and deployment uploads.
 - [x] Verify live receipt write/read and persistence across app/pool restart; build and GitHub checks pass.
 - [ ] Establish billing alerts, monitoring, retention policy, backup/restore verification, and failure recovery procedures.
-- [ ] Use isolated Neon branches for future schema changes; verify migration behavior before production application.
+- [x] Use isolated Neon branches for future schema changes; verify migration behavior before production application.
 - [ ] Add cross-instance and post-redeployment persistence checks, alongside existing pool-restart coverage.
 - [ ] Decide whether/when a custom domain is useful.
 
 ## Design direction
 
 - [x] Use warm ivory, deep navy, muted brick red, serif editorial headings, fine document rules, and a subtle woven-line/star detail.
-- [x] Apply the palette to the main app, essay, and recovery-status pages.
+- [x] Apply the palette to the main app, essay, and appendices.
 - [x] Preserve neutral, welcoming civic positioning; avoid flags, eagles, campaign slogans, official seals, or implied governmental affiliation.
-- [ ] Carry this design through recovered appendix and audit pages as they are restored.
+- [x] Carry this design through recovered appendix and audit pages as they are restored.
+
+## Combined release — October 20, 2026
+
+- [x] Remove recovery/migration banners from the public essay and appendix pages without altering their source prose.
+- [x] Preserve the v0.4 sketch and all eleven research appendix sections in the devlog.
+- [x] Verify public records in the browser and independently with both the original and maintained checkers.
+- [x] Compare saved checkpoints to detect truncation, wrong keys/elections and conflicting history.
+- [x] Test 12 concurrent writes through two database pools, duplicate rollback, HTTP flow, restart and key mismatch on an isolated Neon branch.
+- [x] Store fresh production keys in a versioned Secret Manager secret with access restricted to the app runtime.
+- [ ] Introduce pagination/incremental verification before larger use: this research demo reads the complete log for integrity checks and totals.

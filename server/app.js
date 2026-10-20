@@ -4,7 +4,7 @@ import rateLimit from '@fastify/rate-limit';
 import fastifyStatic from '@fastify/static';
 import { fileURLToPath } from 'node:url';
 
-export async function createApp({store=null,staticFiles=true,logger=false}={}) {
+export async function createApp({store=null,voting=null,staticFiles=true,logger=false}={}) {
   const app=Fastify({logger,bodyLimit:4096,ajv:{customOptions:{removeAdditional:false}}});
   await app.register(helmet,{contentSecurityPolicy:{directives:{defaultSrc:["'self'"],scriptSrc:["'self'"],styleSrc:["'self'","'unsafe-inline'"],imgSrc:["'self'","data:"],connectSrc:["'self'"],objectSrc:["'none'"],frameAncestors:["'none'"]}}});
   await app.register(rateLimit,{max:60,timeWindow:'1 minute'});
@@ -12,7 +12,7 @@ export async function createApp({store=null,staticFiles=true,logger=false}={}) {
     try { if(store) await store.health(); return {ok:true,storage:store?'postgres':'browser-only'}; }
     catch { return reply.code(503).send({ok:false,error:'Database unavailable'}); }
   });
-  app.get('/api/config',async()=>({mode:'practice',persistent:!!store,electionId:'practice-01'}));
+  app.get('/api/config',async()=>({mode:voting?'encrypted-lab':'practice',persistent:!!store,electionId:voting?.config.election.id??'practice-01',...voting?.config}));
   const hash={type:'string',pattern:'^[a-f0-9]{64}$'};
   app.post('/api/receipts',{
     config:{rateLimit:{max:10,timeWindow:'1 minute'}},
@@ -29,6 +29,15 @@ export async function createApp({store=null,staticFiles=true,logger=false}={}) {
     try { const record=await store.find(req.params.commitment);return record??reply.code(404).send({error:'Receipt not found'}); }
     catch {return reply.code(503).send({error:'Receipt storage is temporarily unavailable.'});}
   });
+  const lab=handler=>async(req,reply)=>{
+    if(!voting)return reply.code(503).send({error:'The voting experiment is temporarily unavailable.'});
+    try{return await handler(req,reply);}catch(e){return reply.code(e.statusCode??503).send({error:e.statusCode?e.message:'The voting experiment is temporarily unavailable. Please try again.'});}
+  };
+  app.post('/api/vote',{config:{rateLimit:{max:10,timeWindow:'1 minute'}},schema:{body:{type:'object',additionalProperties:false,required:['ciphertext'],properties:{ciphertext:{type:'string',minLength:150,maxLength:800}}}}},lab(async(req,reply)=>reply.code(201).send(await voting.submit(req.body.ciphertext))));
+  app.get('/api/board',lab(()=>voting.board()));
+  app.get('/api/results',lab(()=>voting.totals()));
+  app.get('/api/receipt',{schema:{querystring:{type:'object',required:['receipt'],properties:{receipt:hash}}}},lab(req=>voting.find(req.query.receipt)));
+  app.get('/api/signing-key.pem',lab((_req,reply)=>reply.type('text/plain').send(voting.config.signingPublicKey)));
   if(staticFiles){
     await app.register(fastifyStatic,{root:fileURLToPath(new URL('../dist/',import.meta.url))});
     app.setNotFoundHandler((req,reply)=>req.url.startsWith('/api/')?reply.code(404).send({error:'Not found'}):reply.code(404).type('text/plain').send('Page not found'));

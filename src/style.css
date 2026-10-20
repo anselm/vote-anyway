@@ -20,3 +20,5 @@ header{border-bottom:1px solid var(--civic-rule)}
 .panel{border-top:2px solid var(--civic-ink)}
 footer{border-top:3px double #20334d70}
 @media(max-width:640px){h1{font-size:69px;letter-spacing:-2.8px}.page-title{font-size:44px;letter-spacing:-1.8px}nav{gap:12px;flex-wrap:wrap}.hero-art{min-height:350px}}
+
+.verifier-command{white-space:pre-wrap;overflow-wrap:anywhere;padding:18px;background:#eee9df;font-size:13px} .actions{flex-wrap:wrap}
