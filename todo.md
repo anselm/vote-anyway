@@ -32,6 +32,15 @@ The original source is preserved under `reference/original-prototype-20261020/`,
 
 **Archive handling:** the handoff reports generated development private keys in `data/keys.json` and sample records in `data/board.json`. Do not commit or deploy these keys. Import source separately from generated data and create fresh production secrets where needed.
 
+## Audit decision before implementation
+
+- [x] Compare original and current code, tests, threat model, and product intent. See [implementation audit](docs/IMPLEMENTATION-AUDIT.md).
+- [x] Probe the original verifier: valid-prefix truncation passes without an independently trusted checkpoint. Record this as a migration requirement, not a solved guarantee.
+- [ ] Establish original behavior/artifact compatibility tests before porting.
+- [ ] Design transactional ballot ordering and persistent election-scoped key initialization together; test on a development database branch.
+- [ ] Preserve current fingerprint receipts as practice records, separate from encrypted ballots.
+- [ ] Port and verify in the acceptance order in the audit; do not restore the original server wholesale.
+
 ## Preserve the original prototype's capabilities
 
 The current app is a new practice interface, **not a completed port**. It stores randomized fingerprints, keeps selections in the browser, and has no tally. The handoff reports the earlier demo already had the following; verify its source and tests, then preserve/port them:
