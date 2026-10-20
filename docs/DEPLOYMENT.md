@@ -1,5 +1,17 @@
 # Deploy to Cloud Run with Neon PostgreSQL
 
+## Current deployment
+
+- Project: `anselm-gcloud`
+- Region: `us-west1`
+- Service: `vote-anyway`
+- URL: https://vote-anyway-728854538261.us-west1.run.app
+- Runtime account: `vote-anyway-runtime@anselm-gcloud.iam.gserviceaccount.com` (no project roles)
+- Build account: `vote-anyway-build@anselm-gcloud.iam.gserviceaccount.com` (`roles/run.builder`, explicitly approved)
+- Current storage mode: browser-only; Neon not yet provisioned.
+
+When redeploying, include `--build-service-account=projects/anselm-gcloud/serviceAccounts/vote-anyway-build@anselm-gcloud.iam.gserviceaccount.com`. The project default build account lacks the required source-read permissions.
+
 ## Prerequisites
 
 Sign in with `gcloud auth login`. Select an intended Google Cloud project with billing. Confirm the account/project before deploying; the workstation default is not automatically the correct project. Create a Neon project and obtain its pooled PostgreSQL connection string with TLS enabled.

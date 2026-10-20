@@ -9,3 +9,5 @@ The complete handoff revealed an original prototype ZIP, `vote-anyway-project-20
 The essay now builds directly from Markdown to `/essay.html`. Original appendix links lead to explicit recovery-status pages until their source is recovered. The essay text remains unchanged. A brief publication note distinguishes the prototype described in the draft from the current practice site.
 
 Neon remains unprovisioned. Initial Cloud Run deployment uses browser-only practice with explicit UI status. No claims of durable receipt storage or real election verification should be made until those systems are connected and tested.
+
+Deployment succeeded: https://vote-anyway-728854538261.us-west1.run.app (revision `vote-anyway-00001-jbd`). Public homepage, essay, Markdown download, health, and config endpoints returned HTTP 200. Health confirms browser-only mode. Local tests and production build passed before deployment.
