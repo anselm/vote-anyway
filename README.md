@@ -19,7 +19,7 @@ npm test
 npm start
 ```
 
-Open http://localhost:8080. For frontend development, run `npm run dev` alongside the backend. Copy `.env.example` to `.env` to configure a database, then run `npm run db:migrate` before starting the server.
+Open http://localhost:8080. For frontend development, run `npm run dev` alongside the backend. Neon writes `.env.local`; startup, migrations, and `npm run test:db` load it automatically. An existing `.env` is also supported. Run `npm run db:migrate` before starting the server. The app uses pooled `DATABASE_URL`; migrations prefer direct `DATABASE_URL_UNPOOLED`. Both files are ignored by Git and excluded from deployment uploads.
 
 ## Project records
 

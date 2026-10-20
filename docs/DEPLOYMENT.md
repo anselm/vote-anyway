@@ -8,7 +8,9 @@
 - URL: https://vote-anyway-728854538261.us-west1.run.app
 - Runtime account: `vote-anyway-runtime@anselm-gcloud.iam.gserviceaccount.com` (no project roles)
 - Build account: `vote-anyway-build@anselm-gcloud.iam.gserviceaccount.com` (`roles/run.builder`, explicitly approved)
-- Current storage mode: browser-only; Neon not yet provisioned.
+- Neon project: `restless-resonance-93178261`, production branch (`br-twilight-feather-b40ynqpe`), organization `org-calm-sea-48867466`.
+- Database secret: `vote-anyway-database-url:1`, accessible only to the dedicated runtime account via a secret-scoped grant.
+- Application requests use the pooled connection; migrations use the direct connection.
 
 When redeploying, include `--build-service-account=projects/anselm-gcloud/serviceAccounts/vote-anyway-build@anselm-gcloud.iam.gserviceaccount.com`. The project default build account lacks the required source-read permissions.
 
@@ -20,11 +22,19 @@ Never commit `.env` or paste database credentials into GitHub. Store `DATABASE_U
 
 ## Database
 
-Set DATABASE_URL in an untracked local `.env`, then:
+Neon CLI setup uses the existing project, not a new one:
+
+```sh
+npx --yes neon@latest init -y --org-id org-calm-sea-48867466 --project-id restless-resonance-93178261 --branch production --services postgres
+npx --yes neon@latest deploy
+```
+
+Complete the browser login if requested. Deployment pulls `DATABASE_URL` and `DATABASE_URL_UNPOOLED` into ignored `.env.local`. Then:
 
 ```sh
 npm ci
 npm run db:migrate
+npm run test:db
 ```
 
 The migration is idempotent and creates only `practice_receipts`. Back up database data before later schema changes. The initial migration is run separately rather than by every Cloud Run instance.
