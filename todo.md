@@ -123,6 +123,6 @@ Keep limitations explicit: the demonstration has server-held decryption keys, no
 - [x] Reframe the public devlog around the project’s development; retain historical engineering records in Git.
 - [x] Support system light/dark mode using one shared palette; check normal text contrast and mobile overflow.
 - [x] Use the supplied Anchorage voting-line photograph on the homepage with source credit.
-- [ ] Confirm a live human passkey sign-in round trip with the owner.
+- [x] Confirm a live human passkey sign-in round trip with the owner. Anselm confirmed public-site sign-in works on October 20, 2026.
 - [ ] Define topic eligibility and one-person/one-vote or revoting policies. Authentication alone does not implement them.
 - [ ] Add topic management, closing and moderation; questions are currently immutable and open immediately.

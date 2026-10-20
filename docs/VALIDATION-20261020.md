@@ -10,6 +10,6 @@ Browser checks covered the original encrypted choose/review/submit/receipt flow,
 
 ## Public deployment
 
-Code commit `c9059be` is deployed as Cloud Run revision `vote-anyway-00007-guy`, serving 100% of public traffic. GitHub Checks passed. After promotion, the canonical public URL passed authentication-gate checks, pre-deployment receipt/key continuity, all essay/appendix/outline pages, the curated devlog, system theme CSS, exact supplied photo bytes, API schema, and downloaded agent CLI/verifier execution. The owner chose to test the real attest passkey round trip on the public site; that check remains pending.
+Code commit `c9059be` is deployed as Cloud Run revision `vote-anyway-00007-guy`, serving 100% of public traffic. GitHub Checks passed. After promotion, the canonical public URL passed authentication-gate checks, pre-deployment receipt/key continuity, all essay/appendix/outline pages, the curated devlog, system theme CSS, exact supplied photo bytes, API schema, and downloaded agent CLI/verifier execution. Anselm subsequently confirmed that sign-in works well on the public site on October 20, 2026, completing the owner-operated passkey round-trip check.
 
 Full isolated-Neon run: 10 tests passed, zero failures, zero skips. Offline/CI run: 7 passed and 3 database-dependent tests explicitly skipped. Original prototype test: 1 passed. Production build passed. No source prose or research appendices were changed.
