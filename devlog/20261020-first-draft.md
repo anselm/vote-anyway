@@ -27,12 +27,12 @@ Start a parallel-voting research site, explicitly **not an official election**. 
 
 ## Questions uncovered
 
-- What evidence would let the same phone detect a client that lies about the encrypted selection?
-- Can public witnesses prevent quiet rewrites of the entire election history?
-- How to verify tally correctness without revealing individual ballots or trusting one decryption server?
-- What workable identity/uniqueness assumptions make a parallel trial useful without collecting invasive personal data?
-- Could subject-specific delegation be compatible with receipt-freeness, particularly when the delegation graph itself is identifiable?
-- How to test coercion resistance honestly without creating a misleading decoy UI?
+1. What evidence would let the same phone detect a client that lies about the encrypted selection?
+2. Can public witnesses prevent quiet rewrites of the entire election history?
+3. How to verify tally correctness without revealing individual ballots or trusting one decryption server?
+4. What workable identity/uniqueness assumptions make a parallel trial useful without collecting invasive personal data?
+5. Could subject-specific delegation be compatible with receipt-freeness, particularly when the delegation graph itself is identifiable?
+6. How to test coercion resistance honestly without creating a misleading decoy UI?
 
 ## Next milestone
 

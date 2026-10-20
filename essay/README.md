@@ -1,12 +1,14 @@
 # Vote Anyway — recovered first draft
 
-The full essay is now in [vote-anyway-first-draft.md](vote-anyway-first-draft.md). It was recovered from the original chat's Markdown document preview on October 20, 2026. Prose, headings, emphasis, and link targets are preserved; the file was reconstructed from the rendered document because the download action did not return a usable local file. Byte-for-byte identity with the originating file has not been verified.
+The full essay is now in [vote-anyway-first-draft.md](vote-anyway-first-draft.md). It was recovered from the original chat's Markdown document preview on October 20, 2026. Prose, headings, emphasis, and link targets are preserved; the file was reconstructed from the rendered document because the download action did not return a usable local file. Subsequently compared with the original file supplied by Anselm on October 20, 2026: byte-for-byte identical.
 
 The first draft describes the original encrypted-ballot prototype, which is more capable than the newer practice-only interface. Its ZIP and appendices still need importing. Preserve both implementations and distinguish their capabilities.
 
 ## Earlier research outline
 
-The original working outline v0.3 is linked from “Digital voting article framing” as `sandbox:/mnt/data/voting_unbundled_working_outline_v0.3.md`. That download has not yet been recovered locally. Preserve the original text when it becomes available; do not silently substitute a newly written essay.
+The latest known research outline is `voting_unbundled_working_outline_v0.4.md`, identified in the complete handoff, and is still unrecovered. See `../todo.md` for the complete artifact inventory.
+
+The earlier working outline v0.3 is linked from “Digital voting article framing” as `sandbox:/mnt/data/voting_unbundled_working_outline_v0.3.md`. That download has not yet been recovered locally. Preserve the original text when it becomes available; do not silently substitute a newly written essay.
 
 Recovered outline of the core article:
 

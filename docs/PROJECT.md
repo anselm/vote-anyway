@@ -4,7 +4,7 @@ Recovered from Anselm’s “Digital voting article framing” conversation on O
 
 ## Agreed direction
 
-- Vote Anyway is a clearly unofficial experimental parallel voting platform, with a companion essay, “Voting, Unbundled.”
+- Vote Anyway is a clearly unofficial experimental parallel voting platform, with a companion essay, “Vote Anyway” (earlier outline title: “Voting, Unbundled”).
 - Node 22, Fastify, Svelte 5, Tailwind, PostgreSQL on Neon, hosting on Google Cloud Run.
 - attest.monster is the intended identity integration, pending inspection of its actual protocol and configuration.
 - Preserve the essay, linked technical appendices, research, and chronological `/devlog/` in GitHub.
@@ -22,13 +22,17 @@ The GitHub repository initially contained only a 13-byte README. Anselm confirme
 
 ## Next milestones
 
-1. Deploy the first container to Cloud Run and provision Neon; verify persistence across instances/redeployments.
+1. Preserve the deployed Cloud Run/Neon foundation. Live receipt write/read and pool-restart persistence are verified; cross-instance/redeployment checks remain.
 2. Recover the original outline and remaining product discussion without rewriting or inventing the missing material.
 3. Inspect attest.monster; define identity and election-scoped eligibility interfaces.
 4. Select an established cryptographic protocol and publish a threat model and independently executable verifier before claiming verifiable voting.
 5. Introduce election creation, participation policy, provisional ballots, and adjudication with appropriate authorization.
 6. Explore ranked/approval methods, trust graphs, delegation, and incentives as separately documented experiments.
 
-## Infrastructure awaiting confirmation
+## Current infrastructure
 
-The local gcloud configuration names `poetic-producer-435915-c2` and account `anselm@costumenetwork.com`; those are existing workstation settings, not confirmed Vote Anyway deployment choices. Authentication was expired at migration. No production URL or domain is established.
+Anselm selected `anselm-gcloud`. The site is live at https://vote-anyway-728854538261.us-west1.run.app in `us-west1`, with Neon project `restless-resonance-93178261` on its production branch. See `docs/DEPLOYMENT.md` for identities and secret references. No custom domain is configured.
+
+## Migration completeness
+
+See [`../todo.md`](../todo.md) for the audited recovery checklist. The full essay and original first-draft devlog are recovered. The original prototype archive, three appendices, threat model, editorial roadmap, and fuller v0.4 outline are still missing. Appendix routes currently show recovery notices, not original text. The current practice interface is not a feature-complete port of the original encrypted-ballot demo.

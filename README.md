@@ -23,6 +23,8 @@ Open http://localhost:8080. For frontend development, run `npm run dev` alongsid
 
 ## Project records
 
+Start with [todo.md](todo.md) for the migration audit, missing appendices and original prototype features, and implementation priorities.
+
 - [Project brief and recovered decisions](docs/PROJECT.md)
 - [Architecture and boundaries](docs/ARCHITECTURE.md)
 - [Cloud Run and Neon deployment](docs/DEPLOYMENT.md)
