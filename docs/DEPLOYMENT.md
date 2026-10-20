@@ -1,0 +1,50 @@
+# Deploy to Cloud Run with Neon PostgreSQL
+
+## Prerequisites
+
+Sign in with `gcloud auth login`. Select an intended Google Cloud project with billing. Confirm the account/project before deploying; the workstation default is not automatically the correct project. Create a Neon project and obtain its pooled PostgreSQL connection string with TLS enabled.
+
+Never commit `.env` or paste database credentials into GitHub. Store `DATABASE_URL` in Google Secret Manager as `vote-anyway-database-url` and grant the runtime service account access to that secret only. Configure a dedicated runtime service account; do not reuse broad owner credentials.
+
+## Database
+
+Set DATABASE_URL in an untracked local `.env`, then:
+
+```sh
+npm ci
+npm run db:migrate
+```
+
+The migration is idempotent and creates only `practice_receipts`. Back up database data before later schema changes. The initial migration is run separately rather than by every Cloud Run instance.
+
+## Container deployment
+
+The Dockerfile builds the frontend, installs only production dependencies in the final image, and runs as the unprivileged `node` user. Cloud Run builds directly from source with Cloud Build and Artifact Registry.
+
+Replace the uppercase placeholders after confirming the target project, runtime identity, and region:
+
+```sh
+gcloud services enable run.googleapis.com cloudbuild.googleapis.com artifactregistry.googleapis.com secretmanager.googleapis.com --project=PROJECT_ID
+gcloud run deploy vote-anyway \
+  --source . \
+  --project PROJECT_ID \
+  --region us-west1 \
+  --service-account RUNTIME_SERVICE_ACCOUNT \
+  --allow-unauthenticated \
+  --min-instances 0 \
+  --max-instances 2 \
+  --memory 512Mi \
+  --cpu 1 \
+  --concurrency 40 \
+  --set-secrets DATABASE_URL=vote-anyway-database-url:latest
+```
+
+To deploy the browser-only site first, omit `--set-secrets`. The UI clearly identifies that mode; receipt writes return 503 instead of inventing persistence. The public site is explicitly requested by Anselm; `--allow-unauthenticated` enables access to this practice app, not access to Google Cloud administration or the database.
+
+## Verification
+
+Open the returned HTTPS URL. Try a ballot, download its receipt, and verify the code. With Neon configured, check that the code can be found from another browser and after redeployment. Check `/api/health` reports `postgres`. Inspect logs without printing credentials. The receipt database is not an election tally.
+
+Set budgets/alerts and monitor usage as the experiment grows. Zero minimum instances and a two-instance ceiling limit compute scaling but do not cap all cloud charges.
+
+References: [Cloud Run source deployment](https://docs.cloud.google.com/run/docs/deploying-source-code), [Neon connections](https://neon.com/docs/connect/connect-from-any-app).
