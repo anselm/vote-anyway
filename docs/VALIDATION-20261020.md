@@ -27,3 +27,7 @@ Full isolated-Neon run: 10 tests passed, zero failures, zero skips. Offline/CI r
 Feature commits `7ec4267` and `a595a49` were deployed as `vote-anyway-00010-les`, with 100% traffic confirmed October 20, 2026. GitHub Checks passed. Candidate checks verified page routes and 404s, all three appendix pages and eleven outline anchors, exact essay Markdown preservation, the earlier ballot’s signed-chain continuity, and unsigned-write rejection. The canonical public homepage was inspected after promotion and showed the explicit digital-voting argument and real links. No schema, ballot protocol or authentication rules changed in this release.
 
 A subsequent documentation handoff adds root AGENTS.md, a current continuation guide and a curated devlog entry, and replaces stale setup instructions. Live revision numbers should always be checked rather than inferred from historical validation entries.
+
+## Ways of deciding together appendix
+
+Documentation-only addition: `content/appendices/collective-decisions.md`, published at `/appendix-collective-decisions.html`, with links from the research index, essay/appendix reading footers and runoff note. Build passed; local checks verified the new devlog entry, inbound/outbound local links, and worked-example quota/transfer arithmetic. Git comparison confirms the essay and three original appendix Markdown sources are unchanged. No database, ballot, authentication or counting implementation changes. The appendix describes proposed and historical methods, not newly supported app features.

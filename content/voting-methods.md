@@ -20,6 +20,8 @@ Avery would win a simple plurality vote. In this example Casey is eliminated; tw
 
 If a ballot has no remaining ranked candidate, it is **exhausted** and stops contributing to later rounds. Results should show both continuing and exhausted ballots, and identify the denominator used for any majority claim. A majority of continuing ballots may be less than half of the original ballots.
 
+For the broader history and multi-seat methods, see [Ways of deciding together](/appendix-collective-decisions.html).
+
 ## Several ways to address the problem
 
 | Method | What a participant does | What the experiment would need |

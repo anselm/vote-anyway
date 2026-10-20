@@ -141,3 +141,9 @@ Keep limitations explicit: the demonstration has server-held decryption keys, no
 - [x] Record current implementation, source map, validation, pending work and existing infrastructure in `docs/HANDOFF.md`.
 - [x] Replace stale setup/deployment guidance and publish a current development entry.
 - [ ] Keep the handoff and public feature plan synchronized with future substantive releases.
+
+## Voting machinery and collective decisions
+
+- [x] Publish a new sourced appendix on the purposes and history of voting methods, with limited/cumulative voting, STV, representation and deliberation.
+- [x] Include fictional worked examples and connect the appendix to the research index, essay, existing appendices and runoff note without changing original source prose.
+- [ ] Explore an interface organized around the decision’s purpose; retain single-winner runoff as the first proposed ranked experiment.

@@ -4,6 +4,8 @@ The essay makes an argument for more accessible participation. Its appendices ca
 
 ## The essay’s companion appendices
 
+- [Ways of deciding together](/appendix-collective-decisions.html) — the history and purposes of voting methods: choosing a winner, representing a community and finding common ground. Includes limited voting, cumulative voting, STV and worked examples, building on the Nonprofit VOTE article.
+
 - [Security, verification, and field experience](/appendix-security.html) — election properties, cryptographic protocols, remote-voting risks and experience in Estonia and Switzerland. Includes ElectionGuard, Helios and the National Academies’ work.
 - [Democratic mechanisms and precedents](/appendix-democracy.html) — deliberation, delegation, participation incentives and counting rules, with references to Smartocracy, liquid democracy, Pol.is, Decidim and vTaiwan.
 - [The prototype and its research questions](/appendix-prototype.html) — the experiment’s design and technical questions. For the current implementation, see [Where we are](/about#where-we-are).

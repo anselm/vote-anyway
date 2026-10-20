@@ -9,8 +9,8 @@ Updated October 20, 2026. This is the current continuation guide. Read this file
 - Public site: https://vote-anyway-728854538261.us-west1.run.app/
 - Latest feature commits: `7ec4267` (page URLs, research index, feature plan), `a595a49` (explicit homepage argument for digital voting).
 - Those features were verified live in Cloud Run revision `vote-anyway-00010-les`, at 100% traffic on October 20. Documentation releases may have a later revision; inspect service traffic before deploying or rolling back.
-- Latest development entry: `devlog/20261020-digital-voting-and-next-steps.md`.
-- This handoff update changes documentation and publishes that entry; it does not change voting or authentication behavior.
+- Latest development entry: `devlog/20261020-ways-of-deciding.md`.
+- The latest research addition publishes Appendix D, Ways of deciding together. It changes reading pages and documentation, not voting or authentication behavior.
 
 ## What Anselm wants
 
@@ -26,7 +26,7 @@ Continue the deliberate combination of both prototypes. Do not replace the exist
 - Browser-encrypted ballots, SHA-256 ciphertext receipts, Ed25519-signed linked public records, transactional PostgreSQL persistence, server-computed totals, browser and standalone record checkers, and retained checkpoints for continuity checks.
 - Real page URLs: `/topics`, `/topics/new`, `/about`, `/ballot`, `/verify`, `/board`, `/account/agents`; topic URLs `/topic/:id`, `/topic/:id/verify`, `/topic/:id/board`. Legacy `/lab.html` and `/agent.html` continue to work. Receipt links may include `?receipt=...`. Native links support refresh and browser history.
 - Shared system light/dark theme; warm ivory, navy and muted brick; serif headings and fine rules. Homepage photograph credited to Bill Roth / Anchorage Daily News, with provenance in `public/images/README.md`.
-- Essay, three companion appendices, full working outline with eleven appendix sections, curated devlog, research index, sourced runoff design note and existing “Where we are” plan at `/about#where-we-are`.
+- Essay, three original companion appendices plus the new Ways of deciding together appendix, full working outline with eleven appendix sections, curated devlog, research index, sourced runoff design note and existing “Where we are” plan at `/about#where-we-are`.
 
 ## Explicit limits and next priorities
 
@@ -35,6 +35,8 @@ Repeat submissions are permitted. Counts are submissions, not unique voters. The
 Anselm asked about electing a person and avoiding vote splitting. The proposed next feature is single-winner ranked-choice instant runoff with understandable transfers and results for each round. **No ranked-ballot or runoff implementation exists yet.** `content/voting-methods.md` explains the proposal, alternatives and limitations with sources. First define the closing time, eligibility, repeat-vote/replacement policy, tie rules and incomplete-ranking rules, fixed before opening a vote. Then implement and test the ballot, count, result presentation and agent format consistently. Approval voting, separate-round runoffs, multi-seat representation and delegation are later possibilities.
 
 Other future work includes reviewed cryptographic protocols and independent tally proofs, incremental/paginated log verification, and operating practices such as monitoring, retention and restore drills. Do not present these as completed.
+
+Anselm also asked to situate the experiment within the richer history of collective decisions. `content/appendices/collective-decisions.md` is published at `/appendix-collective-decisions.html`, covering historical contributions, limited/cumulative voting, STV, representation and deliberation. It cites the supplied Nonprofit VOTE article and additional sources. Its examples are educational, not a new implemented count.
 
 ## Preserved source map
 
