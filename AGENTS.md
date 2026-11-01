@@ -1,29 +1,31 @@
 # Continuing Vote Anyway
 
-Before planning or changing this project:
+The canonical checkout is `/Volumes/summer/projects/2026/vote-anyway`. Reuse it and inspect Git state before changes.
 
-1. Read `docs/HANDOFF.md` for the current state, preserved material, decisions, constraints and next work.
-2. Read `docs/PROJECT.md` and the latest development entry identified in the handoff. Read the relevant earlier devlog entries for the area you are changing.
-3. Inspect `git status`, recent commits and the actual implementation. Read `docs/DEPLOYMENT.md` before deployment or database work. Check live Cloud Run traffic rather than assuming a recorded revision is still current.
-4. Use `todo.md` as a backlog; completed historical milestones and future ideas are not evidence of current implementation. Resolve discrepancies against code, tests and deployment evidence and update the current documentation.
+Read these dated entries before continuing; their roles are explicit rather than inferred from filenames:
 
-## Preserve the work and the decisions
+- [November 1 continuation](devlog/20261101-continuation.md): current implementation, source map, limits and pending work.
+- [November 1 project direction](devlog/20261101-project-direction.md): what the project is trying to achieve.
+- [November 1 timeline decision](devlog/20261101-one-timeline.md): how to curate this project's history.
+- [November 1 deployment instructions](devlog/20261101-deployment.md): existing infrastructure, safe candidate checks and promotion. Read before deployment or database work; inspect actual service traffic.
+- [October 20 implementation comparison](devlog/20261020-implementation-audit.md): why the current app combines ideas from both prototypes. Historical analysis, not a current feature inventory.
 
-- Canonical checkout: `/Volumes/summer/projects/2026/vote-anyway`. Reuse it; do not create a replacement app from a conversation summary.
-- Preserve `essay/`, `content/appendices/`, the original draft entries in `devlog/`, and `reference/original-prototype-20261020/`. The original prototype is a reference, not the production deployment target.
-- The implementation deliberately combines the Svelte/Fastify/Cloud Run/Neon foundation with the original encrypted-ballot, receipt, signed-log and independent-verification ideas. Consult `docs/IMPLEMENTATION-AUDIT.md` before revisiting those choices.
-- Preserve Anselm’s essay voice and emotional progression. Keep supporting explanation in appendices and notes. Do not add recovery/migration warnings or imply that preserved writing is missing.
-- The homepage makes an affirmative argument for digital voting. The prototype is an unofficial research experiment. Distinguish working features from planned work without making the public devlog a story about handoff problems.
-- Keep the restrained ivory/navy/brick civic palette, system light/dark support, and credited voting-line photograph. Avoid partisan or official-looking imagery.
+## A route through the thinking
 
-## Engineering boundaries
+Use `devlog/YYYYMMDD-description.md` for writing, decisions, investigations and guidance; a dated folder is appropriate for a coherent multi-file snapshot. Dates come first for command-line sorting. Avoid parallel essay, docs, reference, revisions or old-docs stores. Machine-required files and runtime code/assets stay where their tools need them.
 
-- Keep attest.monster authentication; it works on the public site. Sign-in is not voter eligibility or one-person-one-vote. Repeat submissions are currently allowed.
-- The operator can decrypt ballots and computes totals. Signed-record verification is not a proof of ballot intent or of the tally. Ranked voting is planned, not implemented.
-- Never print or commit credentials, private keys or dotenv files. Never regenerate production voting keys for existing elections. Use an isolated Neon branch for database tests and migrations; the old test branch has an expiry date.
-- Keep ordinary shareable page URLs, topic-scoped receipt/record URLs, and existing links compatible.
-- Do not spawn subagents unless Anselm explicitly requests delegation.
+The devlog is a curated route map, not an exhaustive ledger. Its reader should be able to speedrun the development thinking: motivation, experiments, major turns, failed directions, and the current position. Retroactive entries, amendments, consolidation and pruning are welcome when they improve that route. A failed exploration may need only a sentence explaining why it was abandoned. Git retains the exhaustive history. Do not impose append-only rules or duplicate every change into prose.
 
-## Leave a useful handoff
+Explain an entry's date, purpose and relation to later thinking when those are not obvious. Dates indicate sequence, not authority. Keep this entry point and README links current when guidance changes. Check facts against code and deployment evidence; distinguish implemented features, proposals and abandoned approaches. `todo.md` is the backlog.
 
-After a meaningful change, update `docs/HANDOFF.md`, the relevant validation/deployment notes and `todo.md`. Add a concise development entry for product decisions; include it in the explicit list in `scripts/build-essay.js` when it should appear on the public site. Record what was tested, what remains untested, and any uncommitted or undeployed work. Preserve historical entries rather than rewriting them as current status.
+Preserve Anselm's original writing, appendices and requested prototype snapshot as intentional artifacts, including `devlog/20261020-original-prototype/`; curate the surrounding narrative without silently changing their contents. Current essay source is `devlog/20261101-vote-anyway.md`, selected by `scripts/build-essay.js`. Preserve public URLs when selecting a later version. Public devlog entries are explicitly curated in that build script; repository notes are not automatically published.
+
+## Boundaries
+
+- Preserve Anselm's voice and emotional progression. Substack can be fervent; the formal essay can be more equanimous. Keep the photograph, Yeats poem and “systems with no center.” Do not add alarming migration notices to reader-facing prose.
+- Keep the restrained civic palette, system light/dark support, credited homepage photograph, ordinary shareable URLs and working attest.monster authentication.
+- Sign-in is not voter eligibility or one-person-one-vote. Repeat submissions are allowed. The operator can decrypt ballots and computes totals. Signed-record checks do not prove ballot intent or the tally. Ranked voting remains proposed.
+- Never print or commit credentials, private keys or dotenv files. Never regenerate production voting keys for existing elections. Database tests and migrations need an explicitly verified isolated environment; the old test branch has expired.
+- Do not spawn subagents unless Anselm requests delegation.
+
+After meaningful work, record the decisions, relevant verification, remaining uncertainty and deployment state in the timeline; update entry-point links and the backlog as needed. Keep this useful and proportionate, not ceremonial.

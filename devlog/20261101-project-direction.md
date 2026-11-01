@@ -1,12 +1,12 @@
 # Project brief
 
-Vote Anyway is an argument for digital voting, paired with an unofficial working experiment. Read [HANDOFF.md](HANDOFF.md) for the current continuation guide and [the development log](../devlog/) for the evolving argument and decisions.
+Vote Anyway is an argument for digital voting, paired with an unofficial working experiment. Read [HANDOFF.md](20261101-continuation.md) for the current continuation guide and [the development log](../devlog/) for the evolving argument and decisions.
 
 ## Agreed direction
 
 - Make democratic participation more accessible and frequent, with privacy, faithful counting and independently checkable evidence as goals.
 - Connect theory to experiments and evidence. Keep the core essay persuasive; put technical detail, objections, citations and prior work in appendices.
-- Preserve the original writing and prototype as tracked source. Continue the deliberate combination documented in [the implementation audit](IMPLEMENTATION-AUDIT.md).
+- Preserve the original writing and prototype as tracked source. Continue the deliberate combination documented in [the implementation audit](20261020-implementation-audit.md).
 - Use Svelte 5, Fastify, Node 22, Neon PostgreSQL and Google Cloud Run. Keep the working attest.monster integration.
 - Keep authentication, eligibility, encrypted ballots and public audit evidence conceptually separate.
 - Maintain a restrained, welcoming civic design, system light/dark support and ordinary shareable URLs.
@@ -27,4 +27,4 @@ The main essay integrates the Substack introduction and OpenVTC discussion: part
 
 ## Continuity
 
-The original essay, three companion appendices, first-draft devlog, full v0.4 outline with eleven appendices, and original code archive are preserved in Git. Use the source map in the handoff; do not rebuild from fragments of a chat. Historical entries remain historical. Current infrastructure and deployment procedure are in [DEPLOYMENT.md](DEPLOYMENT.md).
+The original essay, three companion appendices, first-draft devlog, full v0.4 outline with eleven appendices, and original code archive are preserved in Git. Use the source map in the handoff; do not rebuild from fragments of a chat. Historical entries remain historical. Current infrastructure and deployment procedure are in [DEPLOYMENT.md](20261101-deployment.md).

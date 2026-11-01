@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 export async function createApp({store=null,voting=null,authenticate=null,authService=null,staticFiles=true,logger=false}={}) {
   const app=Fastify({logger,bodyLimit:4096,ajv:{customOptions:{removeAdditional:false}}});
-  await app.register(helmet,{contentSecurityPolicy:{directives:{defaultSrc:["'self'"],scriptSrc:["'self'"],styleSrc:["'self'","'unsafe-inline'"],imgSrc:["'self'","data:"],connectSrc:["'self'"],objectSrc:["'none'"],frameAncestors:["'none'"]}}});
+  await app.register(helmet,{contentSecurityPolicy:{directives:{defaultSrc:["'self'"],scriptSrc:["'self'"],styleSrc:["'self'","'unsafe-inline'"],imgSrc:["'self'","data:","https://substack-post-media.s3.amazonaws.com","https://substackcdn.com"],connectSrc:["'self'"],objectSrc:["'none'"],frameAncestors:["'none'"]}}});
   await app.register(rateLimit,{max:60,timeWindow:'1 minute'});
   app.addHook('preHandler',async(req,reply)=>{
     const protectedWrite=req.method==='POST'&&req.url.startsWith('/api/')&&req.url!=='/api/agent-requests';

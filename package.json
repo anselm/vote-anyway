@@ -13,7 +13,7 @@
     "test": "node --test test/*.test.js",
     "db:migrate": "node --env-file-if-exists=.env.local --env-file-if-exists=.env scripts/migrate.js",
     "test:db": "node --env-file-if-exists=.env.local --env-file-if-exists=.env --test test/postgres.integration.test.js",
-    "test:original": "npm test --prefix reference/original-prototype-20261020"
+    "test:original": "npm test --prefix devlog/20261020-original-prototype"
   },
   "dependencies": {
     "@fastify/helmet": "^13.0.0",

@@ -1,6 +1,6 @@
 # Deploy the existing Vote Anyway service
 
-Read [HANDOFF.md](HANDOFF.md) first. The service, database, accounts and secrets already exist. Run from `/Volumes/summer/projects/2026/vote-anyway`.
+Read [HANDOFF.md](20261101-continuation.md) first. The service, database, accounts and secrets already exist. Run from `/Volumes/summer/projects/2026/vote-anyway`.
 
 ## Existing infrastructure
 

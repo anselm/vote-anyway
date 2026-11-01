@@ -1,15 +1,15 @@
 # Vote Anyway — work checklist
 
-Updated November 1, 2026. Start with `docs/HANDOFF.md` for current state and continuation instructions. This backlog retains historical milestones as well as future work; the source preservation checklist is complete.
+Updated November 1, 2026. Start with `devlog/20261101-continuation.md` for current state and continuation instructions. This backlog retains historical milestones as well as future work; the source preservation checklist is complete.
 
 ## Migration audit: recover the existing work first
 
 ### Preserved
 
-- [x] Recover the 2,073-word **Vote Anyway** first draft into `essay/vote-anyway-first-draft.md` and publish it at `/essay.html`.
+- [x] Recover the 2,073-word **Vote Anyway** first draft into `devlog/20261020-essay-first-draft.md` and publish it at `/essay.html`.
 - [x] Preserve its prose, headings, emphasis, and link destinations. Recovery used the original chat's rendered document; The user-supplied original was compared byte for byte and matches.
 - [x] Recover `devlog/20261020-first-draft.md` from its document preview.
-- [x] Record the technology choices and main product concepts in `docs/PROJECT.md` and the devlogs.
+- [x] Record the technology choices and main product concepts in `devlog/20261101-project-direction.md` and the devlogs.
 - [x] Establish GitHub as the source of truth and deploy the site to Cloud Run with Neon receipt persistence.
 
 ### Original source archive — completed
@@ -18,7 +18,7 @@ Updated November 1, 2026. Start with `docs/HANDOFF.md` for current state and con
 - [x] Inspect and import original `content/appendices/security.md`.
 - [x] Inspect and import original `content/appendices/democracy.md`.
 - [x] Inspect and import original `content/appendices/prototype.md`.
-- [x] Recover original `docs/editorial-roadmap.md` and `docs/threat-model.md`.
+- [x] Recover original `devlog/20261020-editorial-roadmap.md` and `devlog/20261020-prototype-threat-model.md`.
 - [x] Recover `voting_unbundled_working_outline_v0.4.md`, the fuller research notebook. Retain earlier versions if obtainable; v0.3 is an earlier reference, not the latest known outline.
 - [x] Preserve the original prototype source and tests in a reference directory or branch before porting them.
 - [ ] Save the complete implementation handoff from the original chat as a provenance document. It identifies substantially more work than the initial partial chat read revealed.
@@ -28,13 +28,13 @@ Updated November 1, 2026. Start with `docs/HANDOFF.md` for current state and con
 
 **Appendix status:** the three original published appendices are now restored from the supplied ZIP under `content/appendices/` and published at their original URLs. The v0.4 working sketch, including eleven exploratory appendix sections, citations, candidate prose, and version history, is in `devlog/20261020-working-sketch-v0.4.md`. These are distinct artifacts. `/lab.html` now opens the combined encrypted-ballot experience.
 
-The original source is preserved under `reference/original-prototype-20261020/`, excluding generated keys and ballot data. The archive's essay and devlog exactly match the supplied originals. The sketch was recovered from the original chat's rendered document and checked for intact transfer, not original-file byte identity.
+The original source is preserved under `devlog/20261020-original-prototype/`, excluding generated keys and ballot data. The archive's essay and devlog exactly match the supplied originals. The sketch was recovered from the original chat's rendered document and checked for intact transfer, not original-file byte identity.
 
 **Archive handling:** the handoff reports generated development private keys in `data/keys.json` and sample records in `data/board.json`. Do not commit or deploy these keys. Import source separately from generated data and create fresh production secrets where needed.
 
 ## Audit decision before implementation
 
-- [x] Compare original and current code, tests, threat model, and product intent. See [implementation audit](docs/IMPLEMENTATION-AUDIT.md).
+- [x] Compare original and current code, tests, threat model, and product intent. See [implementation audit](devlog/20261020-implementation-audit.md).
 - [x] Probe the original verifier: valid-prefix truncation passes without an independently trusted checkpoint. Record this as a migration requirement, not a solved guarantee.
 - [x] Establish original behavior/artifact compatibility tests before porting.
 - [x] Design transactional ballot ordering and persistent election-scoped key initialization together; test on a development database branch.
@@ -138,7 +138,7 @@ Keep limitations explicit: the demonstration has server-held decryption keys, no
 ## Session continuity
 
 - [x] Add root `AGENTS.md` requiring the handoff, project brief and relevant devlog to be read before changes.
-- [x] Record current implementation, source map, validation, pending work and existing infrastructure in `docs/HANDOFF.md`.
+- [x] Record current implementation, source map, validation, pending work and existing infrastructure in `devlog/20261101-continuation.md`.
 - [x] Replace stale setup/deployment guidance and publish a current development entry.
 - [ ] Keep the handoff and public feature plan synchronized with future substantive releases.
 
@@ -157,3 +157,21 @@ Keep limitations explicit: the demonstration has server-held decryption keys, no
 - [x] Prepare a short Substack introduction linking to the main essay.
 - [x] Apply the short introduction to the existing Substack post after owner sign-in; retain its URL and avoid sending a new newsletter. Verified public November 1, 2026.
 - [ ] Evaluate membership, ticket issuance, separate registration, recasting, closing and result visibility before extending ballot formats. Do not infer guarantees from a feature list.
+
+- [x] Restore the Substack photo, closing Yeats poem and original war polemic; retain “systems with no center” and record the distinct editorial voices.
+
+## Proposed aggressive next release — November 1 discussion
+
+Sequence proposed, not implemented or a new commitment to public-election use:
+
+1. Define and ship a complete small-group election: organizer ownership, explicit membership/admission, immutable published rules, opening/closing, one effective ballot per eligible member, a declared replacement policy, final results and dispute/recovery handling.
+2. Evaluate privacy-preserving election credentials alongside that design, using OpenVTC PCS and its election-sidecar work as references. Retain attest.monster for account/device authentication; separate issuance from ballot use. Review duplicate-use prevention, revocation, recovery, issuer collusion and timing metadata together.
+3. Prototype independently verifiable counting with an established election protocol. Compare Helios/ElectionGuard approaches for the actual ballot types; plan trustee-held keys and exportable proofs, plus cast-as-intended checks. Do not bolt a generic ZK proof onto the current operator-decrypted tally and call it complete verification.
+4. Add ranked single-winner runoff with frozen tie/exhaustion rules, understandable transfers, consistent human and agent ballots, and test vectors. Choose the protocol with ranked ballots in mind; simple encrypted-sum counting does not automatically support a private IRV count.
+5. Advance “systems with no center” through portable election manifests/records, an independent verifier, separately operated witnesses/checkpoints and a portable deployment. Avoid claiming that these alone remove all central authority.
+6. Pilot bounded real decisions with willing communities; test mobile/accessibility, device recovery, failure reporting and result comprehension. Add moderation, monitoring and restore drills before wider use.
+
+- [x] Add direct OpenVTC project, PCS implementation and ZK-documentation citations to the main essay.
+
+- [x] Bring essay versions, original prototype, Substack snapshots and project guidance into one dated devlog; preserve public URLs and make current guidance explicit through root links.
+- [x] Adopt the curated route-map convention: retroactive entries and pruning are welcome, with Git retaining exhaustive history.

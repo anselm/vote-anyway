@@ -9,10 +9,10 @@ Updated November 1, 2026. This is the current continuation guide. Read this file
 - Public site: https://vote-anyway-728854538261.us-west1.run.app/
 - Earlier feature commits: `7ec4267` (page URLs, research index, feature plan), `a595a49` (explicit homepage argument for digital voting).
 - Those features were verified live in Cloud Run revision `vote-anyway-00010-les`, at 100% traffic on October 20. Documentation releases may have a later revision; inspect service traffic before deploying or rolling back.
-- Latest writing release: `vote-anyway-00017-qod`, verified at 100% public traffic on November 1, 2026. Full release checks passed on the candidate and canonical URLs.
+- Latest writing release: `vote-anyway-00021-ley`, verified at 100% public traffic on November 1, 2026. Full release checks passed on the candidate and canonical URLs.
 - Substack’s existing post was shortened and verified public after owner sign-in on November 1; its URL and October 28 publication date were retained. No new newsletter was sent.
-- Latest development entry: `devlog/20261101-paper-proofs-and-participation.md`.
-- The latest writing update synthesizes the Substack introduction and OpenVTC discussion into the main essay, extends Appendix A, and adds Appendix E on community voting. It changes reading pages and documentation, not voting or authentication behavior. See `docs/EDITORIAL-20261101.md` and `docs/VALIDATION-20261101.md`.
+- Latest development entry: `devlog/20261101-one-timeline.md`.
+- The latest writing update synthesizes the Substack introduction and OpenVTC discussion into the main essay, extends Appendix A, and adds Appendix E on community voting. It changes reading pages, the timeline organization and the image policy for the original Substack photographs, not voting or authentication behavior. See `devlog/20261101-editorial-notes.md` and `devlog/20261101-validation.md`.
 
 ## What Anselm wants
 
@@ -42,15 +42,15 @@ Anselm also asked to situate the experiment within the richer history of collect
 
 ## Preserved source map
 
-- Current main essay: `essay/vote-anyway.md`, published at `/essay.html` and downloadable at `/vote-anyway.md`.
-- Preserved first draft: `essay/vote-anyway-first-draft.md`; original source, historical devlog and `/vote-anyway-first-draft.md` download remain unchanged.
-- Full October 28 Substack article body: `reference/writing-20261101/substack-vote-anyway.html`. Shortened replacement: `docs/SUBSTACK-SHORT-VERSION.md`.
+- Current main essay: `devlog/20261101-vote-anyway.md`, published at `/essay.html` and downloadable at `/vote-anyway.md`.
+- Preserved first draft: `devlog/20261020-essay-first-draft.md`; original source, historical devlog and `/vote-anyway-first-draft.md` download remain unchanged.
+- Full October 28 Substack article body: `devlog/20261028-substack-original/substack-vote-anyway.html`. Shortened replacement: `devlog/20261101-substack-vote-anyway.md`.
 - New community-voting note: `content/appendices/community-voting.md`, published as Appendix E; OpenVTC capabilities are developer-reported, not independently tested here. Appendix A retains its earlier content and adds sourced paper/proof discussion.
 - Companion appendices: `content/appendices/security.md`, `democracy.md`, `prototype.md`.
 - Full unfinished outline: `devlog/20261020-working-sketch-v0.4.md`, including appendices A–K and bibliography.
 - Earlier snapshots: `devlog/20261020-first-draft.md`, `devlog/20261020-essay-first-draft.md`.
-- Original code: `reference/original-prototype-20261020/`, excluding generated private keys/data.
-- Architectural comparison: `docs/IMPLEMENTATION-AUDIT.md`. Original research documents: `docs/threat-model.md`, `docs/editorial-roadmap.md`; their historical proposals are not current implementation claims.
+- Original code: `devlog/20261020-original-prototype/`, excluding generated private keys/data.
+- Architectural comparison: `devlog/20261020-implementation-audit.md`. Historical research documents: `devlog/20261020-prototype-threat-model.md`, `devlog/20261020-editorial-roadmap.md`; their historical proposals are not current implementation claims.
 - Research index: `content/research.md`; keep explicit Smartocracy credit to Brad deGraf and coauthors.
 
 All these source files are in Git. The original chat or temporary attachments are not required to continue developing the app. Git history retains earlier decisions and versions, but it does not reproduce every conversational nuance.
@@ -69,13 +69,13 @@ All these source files are in Git. The original chat or temporary attachments ar
 
 ## Run and verify
 
-Use Node 22+. Read `README.md` and `docs/DEPLOYMENT.md` first. The ignored `.env.local` contains production database configuration; **do not casually run database tests or migrations using that file**. The ignored `.env.ballot-test` is for the isolated test branch, whose recorded expiry was October 27, 2026 and has now passed; do not use it without checking or replacing the test environment. Never print these files.
+Use Node 22+. Read `README.md` and `devlog/20261101-deployment.md` first. The ignored `.env.local` contains production database configuration; **do not casually run database tests or migrations using that file**. The ignored `.env.ballot-test` is for the isolated test branch, whose recorded expiry was October 27, 2026 and has now passed; do not use it without checking or replacing the test environment. Never print these files.
 
 Build: `npm run build`. Offline tests: `npm test` (last checked 7 pass, 3 explicit database skips). Compatibility: `npm run test:original` (1 pass). Full isolated database suite: `node --env-file=.env.ballot-test --test test/*.test.js` (last full run 10 pass, no skips). That suite uses controlled attest responses; it is not a live passkey test.
 
 To preview with the existing isolated environment: `PORT=8083 node --env-file=.env.ballot-test server/index.js`; use an available approved development port (8083 or 8084) and avoid replacing someone’s running process. Auth origins default to those ports in development. `npm start` loads `.env.local` and `.env`, so it is not the default test command on this workstation.
 
-Release evidence is in `docs/VALIDATION-20261020.md`. Latest checks covered direct page URLs and 404s, refresh/Back/Forward, topic context and receipt prefill, all research links and eleven appendix anchors, unchanged essay bytes, authentication gates, and the previously recorded ballot’s signed-chain continuity across deployment. GitHub Checks passed for both latest feature commits. The later navigation/content release did not rerun the full database suite because no schema or ballot/auth logic changed.
+Release evidence is in `devlog/20261020-validation.md`. Latest checks covered direct page URLs and 404s, refresh/Back/Forward, topic context and receipt prefill, all research links and eleven appendix anchors, unchanged essay bytes, authentication gates, and the previously recorded ballot’s signed-chain continuity across deployment. GitHub Checks passed for both latest feature commits. The later navigation/content release did not rerun the full database suite because no schema or ballot/auth logic changed.
 
 Human approval of an agent on the public site has not been confirmed; automated agent scope/revocation tests passed on the isolated database. Never claim that all production interactions have been manually tested.
 
@@ -83,10 +83,28 @@ Human approval of an agent on the public site has not been confirmed; automated 
 
 GCP: project `anselm-gcloud`, region `us-west1`, service `vote-anyway`. Neon: org `org-calm-sea-48867466`, project `restless-resonance-93178261`, production branch `br-twilight-feather-b40ynqpe`. Production is already provisioned; do not create replacements.
 
-Secret Manager provides `vote-anyway-database-url:1` and `vote-anyway-voting-keys:1`. Never regenerate the production voting keys for existing elections. Runtime/build accounts, exact deployment command, candidate checks and promotion procedure are in `docs/DEPLOYMENT.md`. The `combined` candidate URL is already an allowed auth origin. Keep private keys and connection strings out of source, output and deployment uploads.
+Secret Manager provides `vote-anyway-database-url:1` and `vote-anyway-voting-keys:1`. Never regenerate the production voting keys for existing elections. Runtime/build accounts, exact deployment command, candidate checks and promotion procedure are in `devlog/20261101-deployment.md`. The `combined` candidate URL is already an allowed auth origin. Keep private keys and connection strings out of source, output and deployment uploads.
 
 Anselm previously authorized pushing this repository and deploying the site. Continue within the requested scope; consequential new infrastructure or policy choices still need their own justification. Do not depend on a conversation’s temporary server, scratch file or browser tab for the handoff.
 
 ## Latest editorial direction
 
 Keep the website as the cohesive home of the fuller argument and Substack as its short introduction. Preserve the case for digital exploration alongside the strongest case for paper evidence. Separate paper, cryptographic verification and remote personal-device voting. Keep consumer experience, accessibility and bounded community decisions central; this is not a claim of public-election readiness. Preserve the full prior writing in the source archive.
+
+## Substack voice and presentation — November 1 follow-up
+
+Anselm wants the Substack to carry fervent opinion and the formal web essay to be more equanimous. Do not dilute polemic merely to match the formal essay. Retain the original voting-line photograph with its Yereth Rosen / Alaska Beacon credit and the closing Yeats poem, *The Second Coming*. Anselm considers a photo essential to a Substack post and particularly values the phrase “systems with no center.” The revised Substack restores three original war passages, the photo and poem, and explicitly uses that phrase; the shorter project explanation remains. The web essay already uses the phrase in “Public fabric, and the limits of a poll.”
+
+## Next-release discussion
+
+The proposed sequence is recorded at the end of `todo.md`: complete small-group election rules and lifecycle; evaluate private credentials; adopt reviewed verifiable counting; ranked runoff; portable public evidence and independent witnesses; community pilots and operations. These are proposals, not newly implemented features. OpenVTC and PCS are directly cited in the main essay and Appendix E. Keep credential/eligibility proofs distinct from tally proofs, and preserve attest.monster sign-in.
+
+## One dated timeline
+
+Writing, source snapshots, design decisions and operational guidance live in `devlog/`, using `YYYYMMDD-description` names. Single documents use dated files; multi-file snapshots use dated folders. Root `AGENTS.md` and `README.md` identify the currently applicable entries. A date records provenance, not authority: inspect implementation and deployment evidence. The October 20 practice architecture describes the superseded receipt-only app; the implementation audit and this continuation record explain the later system. Curate the narrative, including retroactive entries and pruning when useful; Git retains exhaustive history. Explain meaningful supersession rather than treating a dated note as permanently authoritative. `public/openapi.json` is a machine-readable app asset, not historical prose.
+
+The essay is selected from `devlog/20261101-vote-anyway.md`; `/essay.html` and both Markdown download URLs remain stable. Before a substantial later revision, create a new dated entry and update the build selection and root links. Public devlog publication is explicitly curated; a local note is not automatically made public.
+
+The Substack also retains Anselm’s opening Flanders Fields riff and his late-October Vancouver / Internet Archive Canada / Kris Krug’s FutureProof writing note. These give the polemic a personal voice and place; shorten duplicated exposition rather than removing that texture.
+
+Final November 1 follow-up: revision `vote-anyway-00021-ley` serves 100% traffic. Candidate and canonical release checks passed, including all eleven outline appendix anchors, stable downloads, original public-record continuity, health and unsigned-write authentication gates. Browser checks confirmed the new timeline, restored passages and photograph rendering. Rollback target is the previously serving `vote-anyway-00017-qod`. Intermediate candidates 19 and 20 were never promoted.

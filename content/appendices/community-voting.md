@@ -21,7 +21,7 @@ The supplied description identifies a useful set of organizer controls:
 - **Result policy:** secrecy, who can see results, whether a participant can recast, and running totals.
 - **Submission path:** a member uses an application such as Keyring or a browser extension. Their Verifiable Trust Agent (VTA) submits to a separate VTI election service, rather than sending the vote through the Verifiable Trust Community (VTC) service.
 
-The public [OpenVTC zero-knowledge overview](https://openvtc.github.io/wiki/concepts/zero-knowledge-proofs) explains the Predicate Credential System in its identity-vetting context and distinguishes implemented work from proposed credential predicates. That is useful background; it does not by itself establish the security properties of the election flow described above.
+The public [OpenVTC zero-knowledge overview](https://openvtc.github.io/wiki/concepts/zero-knowledge-proofs) explains the Predicate Credential System in its identity-vetting context and distinguishes implemented work from proposed credential predicates. The [PCS implementation and its security notes](https://github.com/OpenVTC/predicate-credential-system) provide the underlying research artifact, explicitly labeled unaudited by its authors. These are useful sources to study and test; neither by itself establishes the security properties of the election flow described above.
 
 ## The privacy question is the whole journey
 

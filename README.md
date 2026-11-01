@@ -4,7 +4,7 @@ An experimental, unofficial voting laboratory and companion essay. Theory and wo
 
 ## Continuing this project
 
-Start with [docs/HANDOFF.md](docs/HANDOFF.md), then the latest devlog entry it identifies. [AGENTS.md](AGENTS.md) makes this reading order explicit for coding assistants working in this checkout. The handoff records preserved source, current features, deployment, validation and next work; conversation history is not required.
+Start with [devlog/20261101-continuation.md](devlog/20261101-continuation.md), then the latest devlog entry it identifies. [AGENTS.md](AGENTS.md) makes this reading order explicit for coding assistants working in this checkout. The handoff records preserved source, current features, deployment, validation and next work; conversation history is not required.
 
 ## Current app
 
@@ -14,11 +14,11 @@ The server can decrypt ballots and computes the demonstration totals. Repeat par
 
 ## Local development
 
-Requires Node 22 or newer. Install with `npm ci`, then run `npm run build`, `npm test` and `npm run test:original`. Use the isolated-environment commands in [the handoff](docs/HANDOFF.md) for database tests and a preview on port 8083 or 8084. On this workstation `.env.local` contains production configuration, so do not use the default migration/test/start commands without checking their target. `npm run dev` provides frontend development alongside the backend.
+Requires Node 22 or newer. Install with `npm ci`, then run `npm run build`, `npm test` and `npm run test:original`. Use the isolated-environment commands in [the handoff](devlog/20261101-continuation.md) for database tests and a preview on port 8083 or 8084. On this workstation `.env.local` contains production configuration, so do not use the default migration/test/start commands without checking their target. `npm run dev` provides frontend development alongside the backend.
 
 Use an isolated Neon branch for development. `DATABASE_URL` is the pooled connection; migrations prefer `DATABASE_URL_UNPOOLED`. `VOTING_KEYS` is a JSON bundle containing matching encryption and signing public/private PEM keys. Generate development keys explicitly with the exported `generateKeys()` function in `server/protocol.js`; never commit them or reuse development keys in production. Without keys the development server reports the ballot service unavailable; production refuses startup. `.env.local` and `.env` are loaded by npm start and excluded from Git/container uploads.
 
-The database integration tests require `BALLOT_TEST_DATABASE_URL` and `BALLOT_TEST_KEYS`, targeting an isolated migrated branch. Standard tests skip these explicitly when credentials are absent. The original prototype remains unchanged under `reference/` as a compatibility reference.
+The database integration tests require `BALLOT_TEST_DATABASE_URL` and `BALLOT_TEST_KEYS`, targeting an isolated migrated branch. Standard tests skip these explicitly when credentials are absent. The original prototype remains unchanged under `devlog/20261020-original-prototype/` as a compatibility reference.
 
 ## Independent checking
 
@@ -34,7 +34,7 @@ Get an authentic public key and retain earlier checkpoints through a trusted cha
 
 The essay, three companion appendices, and the full v0.4 outline with eleven exploratory appendix sections are preserved. `/essay.html`, `/devlog.html`, and `/lab.html` link the writing and experiment. The source prose was not rewritten during the software integration.
 
-See [todo.md](todo.md), [implementation audit](docs/IMPLEMENTATION-AUDIT.md), [deployment](docs/DEPLOYMENT.md), and [combined release](devlog/20261020-combined-app.md).
+See [todo.md](todo.md), [implementation audit](devlog/20261020-implementation-audit.md), [deployment](devlog/20261101-deployment.md), and [combined release](devlog/20261020-combined-app.md).
 
 Canonical checkout: `/Volumes/summer/projects/2026/vote-anyway`.
 
@@ -45,3 +45,16 @@ People can approve and revoke agent permissions at `/agent.html`. Agents receive
 A shared civic palette follows system light/dark preference on the app and all reading pages. The homepage photo is supplied by Anselm and credited to Bill Roth / Anchorage Daily News.
 
 Production authentication accepts only the configured `AUTH_ORIGINS` (comma-separated site origins). The default includes the two known Cloud Run service URLs and the tagged staging URL. Requests fail closed when attest verification is unavailable. Private keys never go to attest; only a delegation identifier and the site origin are used for the status check. Nonces and agent grants live in separate PostgreSQL tables; public ballot records do not contain identities.
+
+## Reading the timeline
+
+The [devlog](devlog/) is a curated route through the project's thinking. Dates come first; files hold individual entries and dated folders hold coherent snapshots. Git keeps the exhaustive history, so entries can be amended, added retrospectively, consolidated or pruned. See the [November 1 explanation](devlog/20261101-one-timeline.md).
+
+- [Current continuation](devlog/20261101-continuation.md): implemented behavior, limits, source map and next work.
+- [Project direction](devlog/20261101-project-direction.md): the purpose and agreed direction.
+- [Deployment procedure](devlog/20261101-deployment.md): the existing service and release checks.
+- [Latest validation](devlog/20261101-validation.md): evidence for the November 1 releases.
+- [Current essay source](devlog/20261101-vote-anyway.md): selected for the stable `/essay.html` URL.
+- [Earlier practice architecture](devlog/20261020-practice-architecture.md): superseded receipt-only design, retained to explain the starting point; the [implementation comparison](devlog/20261020-implementation-audit.md) records the subsequent choices.
+
+These links identify the currently useful starting points; a newer-looking or more emphatic filename alone does not establish authority. Update the links when guidance changes.

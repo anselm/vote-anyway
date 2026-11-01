@@ -30,7 +30,7 @@ test('original format, WebCrypto round trip, tampering and checkpoint continuity
  const dir=await mkdtemp(join(tmpdir(),'vote-compat-'));
  try{
   await writeFile(join(dir,'board.json'),JSON.stringify(board));await writeFile(join(dir,'key.pem'),keys.signingPublicKey);
-  for(const script of ['reference/original-prototype-20261020/scripts/verify-log.mjs','scripts/verify-log.mjs']){
+  for(const script of ['devlog/20261020-original-prototype/scripts/verify-log.mjs','scripts/verify-log.mjs']){
    const check=spawnSync(process.execPath,[script,join(dir,'board.json'),join(dir,'key.pem'),a.receipt],{encoding:'utf8'});assert.equal(check.status,0,check.stderr);assert.match(check.stdout,/VALID record integrity/);
   }
  }finally{await rm(dir,{recursive:true,force:true});}
