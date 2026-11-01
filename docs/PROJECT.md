@@ -21,6 +21,10 @@ Repeat submissions remain allowed. The operator can decrypt ballots and computes
 
 Design an informal single-winner ranked-choice runoff: explicit election rules, a ranked ballot and visible counting rounds. Determine eligibility, replacement/repeat-vote policy, closing time, tie handling and incomplete rankings before implementation. See [the voting-method note](../content/voting-methods.md). Approval, separate-round runoffs, multi-seat methods, provisional participation, trust graphs and delegation remain further research directions.
 
+## Current essay direction
+
+The main essay integrates the Substack introduction and OpenVTC discussion: participation as public fabric, user experience, the case for and against paper, and a distinction between cryptographic verification and remote-device safety. Appendix E examines developer-reported community-voting features without claiming they exist in Vote Anyway. The current essay has its own source; historical drafts remain unchanged.
+
 ## Continuity
 
 The original essay, three companion appendices, first-draft devlog, full v0.4 outline with eleven appendices, and original code archive are preserved in Git. Use the source map in the handoff; do not rebuild from fragments of a chat. Historical entries remain historical. Current infrastructure and deployment procedure are in [DEPLOYMENT.md](DEPLOYMENT.md).

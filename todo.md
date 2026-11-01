@@ -1,6 +1,6 @@
 # Vote Anyway — work checklist
 
-Updated October 20, 2026. Start with `docs/HANDOFF.md` for current state and continuation instructions. This backlog retains historical milestones as well as future work; the source preservation checklist is complete.
+Updated November 1, 2026. Start with `docs/HANDOFF.md` for current state and continuation instructions. This backlog retains historical milestones as well as future work; the source preservation checklist is complete.
 
 ## Migration audit: recover the existing work first
 
@@ -147,3 +147,13 @@ Keep limitations explicit: the demonstration has server-held decryption keys, no
 - [x] Publish a new sourced appendix on the purposes and history of voting methods, with limited/cumulative voting, STV, representation and deliberation.
 - [x] Include fictional worked examples and connect the appendix to the research index, essay, existing appendices and runoff note without changing original source prose.
 - [ ] Explore an interface organized around the decision’s purpose; retain single-winner runoff as the first proposed ranked experiment.
+
+## Essay synthesis — November 1, 2026
+
+- [x] Preserve the full Substack article and original essay, with a separate current essay source.
+- [x] Integrate collective decision-making, accessibility, public fabric, consumer experience and the environmental viewpoint.
+- [x] Add explicit arguments for and against paper, with sourced distinctions between paper evidence, cryptographic proofs and remote voting.
+- [x] Add a community-voting appendix covering the developer-reported OpenVTC capabilities and their open questions.
+- [x] Prepare a short Substack introduction linking to the main essay.
+- [x] Apply the short introduction to the existing Substack post after owner sign-in; retain its URL and avoid sending a new newsletter. Verified public November 1, 2026.
+- [ ] Evaluate membership, ticket issuance, separate registration, recasting, closing and result visibility before extending ballot formats. Do not infer guarantees from a feature list.

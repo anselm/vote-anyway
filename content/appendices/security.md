@@ -39,3 +39,19 @@ Paper offers human-readable inspection and software-independent recounts. It als
 ## What this project's initial prototype really checks
 
 The prototype encrypts submissions on the client and publicly signs a ciphertext log. It lets a receipt holder independently check ciphertext inclusion and log signature/chain consistency. It **does not** offer independent tally proofs or establish intent, uniqueness, coercion resistance or protection against an operator presenting conflicting signed records. These are explicit open milestones, not hidden implementation details. See [Prototype appendix](/appendix-prototype.html).
+
+## Paper evidence and software independence
+
+Paper is valuable when it is voter-verified, retained with reliable custody, and actually used to check the reported outcome. A risk-limiting audit sets a bound on the chance of accepting a wrong outcome and can escalate to a full hand count. It does not resolve every enrollment or access problem. Rivest's [2025 presentation](https://people.csail.mit.edu/rivest/pubs/Riv25a.pdf), especially slides 15–16, 22, 28 and 35–41, distinguishes software independence, paper audits, cryptographic verification, hybrids and remote internet voting. It favors paper-plus-cryptography possibilities while rejecting present-day internet voting for public elections. Those are compatible positions.
+
+The essay's [arguments for paper](/essay.html#arguments-for-paper-voting) and [arguments against paper](/essay.html#arguments-against-paper-voting) compare complete participation and verification systems. Neither long lines nor a lack of ranked ballots is an intrinsic property of paper.
+
+## Proofs change what can be checked
+
+Zero-knowledge proofs have a long history: Goldwasser, Micali and Rackoff's [1985 paper](https://doi.org/10.1145/22145.22178) established the foundational idea. A verifier can learn that a specified statement is true without learning the secret evidence used to establish it. In an election, such proofs can help establish ballot validity or correct cryptographic operations without exposing individual choices; the exact statement and assumptions matter.
+
+Ben Adida's [Helios paper (2008)](https://www.usenix.org/conference/17th-usenix-security-symposium/helios-web-based-open-audit-voting) is a reference for web-based open-audit voting. The project's own [FAQ](https://www.heliosvoting.org/faq) distinguishes this work from ordinary electronic voting and explicitly advises against its use for high-stakes public-office internet elections because of endpoint and coercion risks.
+
+Development continues. [ElectionGuard's specification](https://electionguard.vote/spec/) describes proofs, challenge ballots, verifiable decryption and election records; its release notes document reductions in proof size and computation, and support for additional ballot formats. This is evidence of an evolving engineering field, not proof that every proposed remote deployment is safe.
+
+Credential proofs, ballot-validity proofs and tally proofs answer different questions. None alone establishes faithful enrollment, an uncompromised user interface, freedom from pressure, or service availability. A good protocol also needs independent verification, operational review and a usable way to detect and resolve failures. [Community voting and identity](/appendix-community-voting.html) applies those questions to the supplied OpenVTC feature description.

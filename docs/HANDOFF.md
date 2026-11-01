@@ -1,16 +1,18 @@
 # Vote Anyway — start here
 
-Updated October 20, 2026. This is the current continuation guide. Read this file and the latest development entry before starting work. Historical devlog entries explain how decisions developed; they are not a substitute for checking the actual code and live deployment.
+Updated November 1, 2026. This is the current continuation guide. Read this file and the latest development entry before starting work. Historical devlog entries explain how decisions developed; they are not a substitute for checking the actual code and live deployment.
 
 ## Location and baseline
 
 - Canonical checkout: `/Volumes/summer/projects/2026/vote-anyway`
 - Repository: https://github.com/anselm/vote-anyway, branch `main`
 - Public site: https://vote-anyway-728854538261.us-west1.run.app/
-- Latest feature commits: `7ec4267` (page URLs, research index, feature plan), `a595a49` (explicit homepage argument for digital voting).
+- Earlier feature commits: `7ec4267` (page URLs, research index, feature plan), `a595a49` (explicit homepage argument for digital voting).
 - Those features were verified live in Cloud Run revision `vote-anyway-00010-les`, at 100% traffic on October 20. Documentation releases may have a later revision; inspect service traffic before deploying or rolling back.
-- Latest development entry: `devlog/20261020-ways-of-deciding.md`.
-- The latest research addition publishes Appendix D, Ways of deciding together. It changes reading pages and documentation, not voting or authentication behavior.
+- Latest writing release: `vote-anyway-00017-qod`, verified at 100% public traffic on November 1, 2026. Full release checks passed on the candidate and canonical URLs.
+- Substack’s existing post was shortened and verified public after owner sign-in on November 1; its URL and October 28 publication date were retained. No new newsletter was sent.
+- Latest development entry: `devlog/20261101-paper-proofs-and-participation.md`.
+- The latest writing update synthesizes the Substack introduction and OpenVTC discussion into the main essay, extends Appendix A, and adds Appendix E on community voting. It changes reading pages and documentation, not voting or authentication behavior. See `docs/EDITORIAL-20261101.md` and `docs/VALIDATION-20261101.md`.
 
 ## What Anselm wants
 
@@ -26,7 +28,7 @@ Continue the deliberate combination of both prototypes. Do not replace the exist
 - Browser-encrypted ballots, SHA-256 ciphertext receipts, Ed25519-signed linked public records, transactional PostgreSQL persistence, server-computed totals, browser and standalone record checkers, and retained checkpoints for continuity checks.
 - Real page URLs: `/topics`, `/topics/new`, `/about`, `/ballot`, `/verify`, `/board`, `/account/agents`; topic URLs `/topic/:id`, `/topic/:id/verify`, `/topic/:id/board`. Legacy `/lab.html` and `/agent.html` continue to work. Receipt links may include `?receipt=...`. Native links support refresh and browser history.
 - Shared system light/dark theme; warm ivory, navy and muted brick; serif headings and fine rules. Homepage photograph credited to Bill Roth / Anchorage Daily News, with provenance in `public/images/README.md`.
-- Essay, three original companion appendices plus the new Ways of deciding together appendix, full working outline with eleven appendix sections, curated devlog, research index, sourced runoff design note and existing “Where we are” plan at `/about#where-we-are`.
+- Essay, three companion appendices plus Ways of deciding together and Community voting, full working outline with eleven appendix sections, curated devlog, research index, sourced runoff design note and existing “Where we are” plan at `/about#where-we-are`.
 
 ## Explicit limits and next priorities
 
@@ -40,7 +42,10 @@ Anselm also asked to situate the experiment within the richer history of collect
 
 ## Preserved source map
 
-- Main essay: `essay/vote-anyway-first-draft.md`; original source and prose preserved.
+- Current main essay: `essay/vote-anyway.md`, published at `/essay.html` and downloadable at `/vote-anyway.md`.
+- Preserved first draft: `essay/vote-anyway-first-draft.md`; original source, historical devlog and `/vote-anyway-first-draft.md` download remain unchanged.
+- Full October 28 Substack article body: `reference/writing-20261101/substack-vote-anyway.html`. Shortened replacement: `docs/SUBSTACK-SHORT-VERSION.md`.
+- New community-voting note: `content/appendices/community-voting.md`, published as Appendix E; OpenVTC capabilities are developer-reported, not independently tested here. Appendix A retains its earlier content and adds sourced paper/proof discussion.
 - Companion appendices: `content/appendices/security.md`, `democracy.md`, `prototype.md`.
 - Full unfinished outline: `devlog/20261020-working-sketch-v0.4.md`, including appendices A–K and bibliography.
 - Earlier snapshots: `devlog/20261020-first-draft.md`, `devlog/20261020-essay-first-draft.md`.
@@ -64,7 +69,7 @@ All these source files are in Git. The original chat or temporary attachments ar
 
 ## Run and verify
 
-Use Node 22+. Read `README.md` and `docs/DEPLOYMENT.md` first. The ignored `.env.local` contains production database configuration; **do not casually run database tests or migrations using that file**. The ignored `.env.ballot-test` is for the isolated test branch, which expires October 27, 2026; renew or replace the test environment when necessary. Never print these files.
+Use Node 22+. Read `README.md` and `docs/DEPLOYMENT.md` first. The ignored `.env.local` contains production database configuration; **do not casually run database tests or migrations using that file**. The ignored `.env.ballot-test` is for the isolated test branch, whose recorded expiry was October 27, 2026 and has now passed; do not use it without checking or replacing the test environment. Never print these files.
 
 Build: `npm run build`. Offline tests: `npm test` (last checked 7 pass, 3 explicit database skips). Compatibility: `npm run test:original` (1 pass). Full isolated database suite: `node --env-file=.env.ballot-test --test test/*.test.js` (last full run 10 pass, no skips). That suite uses controlled attest responses; it is not a live passkey test.
 
@@ -81,3 +86,7 @@ GCP: project `anselm-gcloud`, region `us-west1`, service `vote-anyway`. Neon: or
 Secret Manager provides `vote-anyway-database-url:1` and `vote-anyway-voting-keys:1`. Never regenerate the production voting keys for existing elections. Runtime/build accounts, exact deployment command, candidate checks and promotion procedure are in `docs/DEPLOYMENT.md`. The `combined` candidate URL is already an allowed auth origin. Keep private keys and connection strings out of source, output and deployment uploads.
 
 Anselm previously authorized pushing this repository and deploying the site. Continue within the requested scope; consequential new infrastructure or policy choices still need their own justification. Do not depend on a conversation’s temporary server, scratch file or browser tab for the handoff.
+
+## Latest editorial direction
+
+Keep the website as the cohesive home of the fuller argument and Substack as its short introduction. Preserve the case for digital exploration alongside the strongest case for paper evidence. Separate paper, cryptographic verification and remote personal-device voting. Keep consumer experience, accessibility and bounded community decisions central; this is not a claim of public-election readiness. Preserve the full prior writing in the source archive.

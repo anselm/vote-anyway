@@ -10,6 +10,10 @@ The essay makes an argument for more accessible participation. Its appendices ca
 - [Democratic mechanisms and precedents](/appendix-democracy.html) — deliberation, delegation, participation incentives and counting rules, with references to Smartocracy, liquid democracy, Pol.is, Decidim and vTaiwan.
 - [The prototype and its research questions](/appendix-prototype.html) — the experiment’s design and technical questions. For the current implementation, see [Where we are](/about#where-we-are).
 
+## Community voting and identity
+
+[Appendix E — Community voting, identity and usable tools](/appendix-community-voting.html) examines the developer-reported OpenVTC capabilities: eligibility tickets, question formats, registration windows, recasting, secrecy, result visibility and separate submission paths. It distinguishes that work from Vote Anyway’s current sign-in and ballot features. The [security appendix](/appendix-security.html#proofs-change-what-can-be-checked) adds the history of zero-knowledge proofs, Helios, and Rivest’s distinction between paper, cryptographic and remote voting.
+
 ## Building on other people’s work
 
 The democracy appendix credits **Brad deGraf** and his Smartocracy coauthors: Marko A. Rodriguez, Daniel J. Steinbock, Jennifer H. Watkins, Carlos Gershenson, Johan Bollen and Victor Grey. Their [2007 Smartocracy paper](https://library.uniteddiversity.coop/Decision_Making_and_Democracy/Smartocracy.pdf) is a foundation for the discussion of trust networks and delegation. The appendix also links [deGraf’s Planetwork profile](https://www.planetwork.net/people/brad-degraf) and related research.
