@@ -39,6 +39,28 @@ Running totals may suit an informal live poll. In a secret election, early resul
 
 Usability includes the unhappy paths. Can a participant recover after losing a device? Discover that a submission failed? Understand a receipt without confusing it with proof of a correct tally? Cast a private ballot using assistive technology? If installing a wallet or extension is required, that requirement is part of the participation cost.
 
+## Learning from voter data systems
+
+Heather Vescent, Kaliya Young and Juan Caballero, [*Securing Voter Data Systems*](https://identitywoman.net/wp-content/uploads/SecuringVoterDataReport_Vescent_June2019.pdf), The Purple Tornado, Inc., June 2019. See p. 3 for scope, pp. 11–14 for the registration flow, pp. 15–19 for vulnerabilities, and pp. 20–26 for resilience recommendations.
+
+The report studies registration-data handling; voting-machine security, voter identity proofing and eligibility criteria are outside its scope. It connects data integrity with usability, staff capability and shared infrastructure. Its account of registration manipulation highlights exclusion before ballot casting. Read its operational descriptions as a 2019 snapshot, not as current election guidance or endorsement of a ledger-based protocol.
+
+Our inference is that a voting experiment should inspect the route into participation as carefully as the count. Can someone discover an incorrect record, understand a refusal, correct it, and still participate in time? Those questions remain useful even when the institution and technology change.
+
+## Public ledgers and social enfranchisement
+
+Anselm's wider direction is a publicly inspectable ledger, with possible enfranchisement through a social tapestry or trust graph. There is no selected ledger, admission algorithm, threshold of endorsements or formal eligibility proposal. These are questions to explore, not features of the current service.
+
+A useful investigation separates three things:
+
+- **Standing in a particular decision.** What makes someone a stakeholder or member here? Who sets that rule, and how can an excluded person challenge it? Being a distinct person, being known to others, and being entitled to vote on this question are different claims.
+- **A private participation credential.** Could a participant prove that they meet the chosen rule without revealing who vouched for them or linking their identity to their ballot? A proof can check a specified claim; it cannot choose a just admission rule. OpenVTC's PCS work is a concrete reference for studying private attestations, rather than a ready-made answer to enfranchisement.
+- **A shared record and checkable result.** What evidence must be available, who keeps copies, and how can observers detect conflicting histories or verify the count? A public ledger alone does not establish truthful membership, correct ballot formation or a correct tally. It need not be a token system, and public verification need not expose personal data.
+
+A trust graph deserves experiments with fabricated identities, colluding endorsers, captured entry points, newcomers and socially isolated participants. We should ask whether it recognizes membership or merely rewards popularity. Revocation, lost credentials and replacing a ballot also need rules that preserve both access and privacy. Test possible approaches against those questions before selecting one.
+
+The design aspiration is to distribute the ability to participate and check the process. Whether any proposed architecture accomplishes that must be demonstrated; moving a record onto a ledger does not settle who controls admission.
+
 ## What this means for Vote Anyway
 
 Vote Anyway currently authenticates through attest.monster, passkeys and signed site-scoped device delegations. Anselm's broader identity direction includes AT Protocol; this application does not independently verify AT Protocol membership or use it to establish voter eligibility. It does not use OpenVTC's identity infrastructure or PCS election tickets.

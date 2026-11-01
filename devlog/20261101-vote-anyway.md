@@ -114,6 +114,12 @@ Still, the possibility of decisions that are more local, specific, time-bounded,
 
 What if participation were in the fabric, like air? Something people could use without asking a single institution to convene every conversation. I am interested in systems with no center: public protocols, independent tools, evidence that can be inspected, and communities able to carry on when a particular service disappears. Vote Anyway is currently a centrally operated prototype. That wider ambition remains work to do.
 
+When I talk about digital voting, I am imagining a shared public ledger: a record that people can inspect and carry forward, with evidence for the count and privacy for the person. I am also imagining a social tapestry through which people might recognize one another as participants—a web of relationships and attestations, rather than every conversation depending on one central gatekeeper. I do not yet have a formal proposal for deciding who is entitled to vote. That question is part of the work.
+
+A ledger can help us agree on a record; deciding who belongs in a decision is another task. A community needs room for newcomers and people with few connections, not merely those already well known. Public evidence need not mean exposing people's identities, relationships or choices. [The community-voting appendix explores these questions](/appendix-community-voting.html#public-ledgers-and-social-enfranchisement).
+
+The surrounding machinery matters too. Heather Vescent, Kaliya Young and Juan Caballero's 2019 report, [*Securing Voter Data Systems*](https://identitywoman.net/wp-content/uploads/SecuringVoterDataReport_Vescent_June2019.pdf), examines voter-registration data and the systems that handle it. It is useful grounding for this broader ambition: participation begins before the ballot. [A reading note sets out its scope](/appendix-community-voting.html#learning-from-voter-data-systems).
+
 Sometimes the useful act is simply to learn what people think. A survey can reveal priorities; deliberation can expose common ground; an election can authorize someone to act. They are different things. A self-selected poll is not the will of an entire community, and agreement among respondents does not automatically confer a mandate. We should make the question, the participants, and the authority of the result visible.
 
 ### You shouldn't have to be an expert in everything

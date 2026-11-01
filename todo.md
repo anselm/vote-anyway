@@ -175,3 +175,6 @@ Sequence proposed, not implemented or a new commitment to public-election use:
 
 - [x] Bring essay versions, original prototype, Substack snapshots and project guidance into one dated devlog; preserve public URLs and make current guidance explicit through root links.
 - [x] Adopt the curated route-map convention: retroactive entries and pruning are welcome, with Git retaining exhaustive history.
+
+- [x] Cite Vescent, Young and Caballero’s 2019 voter-data report and clarify the public-ledger/social-tapestry ambition in the essay and dated devlog.
+- [ ] Explore participation rules without presupposing a trust-score or endorsement threshold: distinguish personhood, standing in a decision and ballot verification; examine newcomers, appeals, collusion, privacy and recovery.
