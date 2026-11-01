@@ -178,3 +178,5 @@ Sequence proposed, not implemented or a new commitment to public-election use:
 
 - [x] Cite Vescent, Young and Caballero’s 2019 voter-data report and clarify the public-ledger/social-tapestry ambition in the essay and dated devlog.
 - [ ] Explore participation rules without presupposing a trust-score or endorsement threshold: distinguish personhood, standing in a decision and ballot verification; examine newcomers, appeals, collusion, privacy and recovery.
+
+- [x] Read and cite the National Academies’ September 2018 report highlights, expanding the existing reference and distinguishing its deployment recommendations from its research agenda.

@@ -9,7 +9,7 @@ Updated November 1, 2026. This is the current continuation guide. Read this file
 - Public site: https://vote-anyway-728854538261.us-west1.run.app/
 - Earlier feature commits: `7ec4267` (page URLs, research index, feature plan), `a595a49` (explicit homepage argument for digital voting).
 - Those features were verified live in Cloud Run revision `vote-anyway-00010-les`, at 100% traffic on October 20. Documentation releases may have a later revision; inspect service traffic before deploying or rolling back.
-- Latest writing release: `vote-anyway-00023-did`, verified at 100% public traffic on November 1, 2026. Full release checks passed on the candidate and canonical URLs.
+- Latest writing release: `vote-anyway-00025-gom`, verified at 100% public traffic on November 1, 2026. Full release checks passed on the candidate and canonical URLs.
 - Substack’s existing post was shortened and verified public after owner sign-in on November 1; its URL and October 28 publication date were retained. No new newsletter was sent.
 - Latest development entry: `devlog/20261101-public-ledgers-and-enfranchisement.md`.
 - The latest writing update synthesizes the Substack introduction and OpenVTC discussion into the main essay, extends Appendix A, and adds Appendix E on community voting. It changes reading pages, the timeline organization and the image policy for the original Substack photographs, not voting or authentication behavior. See `devlog/20261101-editorial-notes.md` and `devlog/20261101-validation.md`.
@@ -114,3 +114,7 @@ Final November 1 follow-up: revision `vote-anyway-00021-ley` serves 100% traffic
 Anselm imagines a shared public ledger, possibly with social-trust-based enfranchisement. There is no formal admission rule, chosen ledger or commitment to a blockchain. Keep this an open research direction, separate from attest sign-in and current implementation. The latest dated entry records the distinction; Appendix E cites the 2019 Vescent/Young/Caballero report and separates its scope from our design questions.
 
 Voter-data reading update: revision `vote-anyway-00023-did` verified at 100% public traffic. Build and reading-link checks passed; candidate and public release checks passed, including the new dated entry, original downloads, eleven outline anchors, signed-record continuity and unsigned-write gates. Previous compatible public revision: `vote-anyway-00021-ley`. No application or database behavior changed.
+
+Further November 1 reading: the National Academies’ supplied 2018 highlights are now cited directly in the essay and research index, with a section in Appendix A and a follow-up in `devlog/20261101-paper-proofs-and-participation.md`. Keep the distinction between paper-based verifiable pilots and internet ballot return explicit; this source does not endorse the proposed public-ledger system.
+
+National Academies highlights update: revision `vote-anyway-00025-gom` verified at 100% public traffic. Candidate and canonical checks passed for the reading pages, preserved downloads, eleven outline anchors, signed-record continuity, health and unsigned-write gates. Previous compatible public revision: `vote-anyway-00023-did`.

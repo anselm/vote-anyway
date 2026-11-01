@@ -33,7 +33,7 @@ Paper offers human-readable inspection and software-independent recounts. It als
 - [Helios](https://www.heliosvoting.org/faq), a project for auditable online voting with explicit threat assumptions.
 - [Estonia election authority overview](https://www.valimised.ee/en/internet-voting-estonia) and [2025 election results](https://kov2025.valimised.ee/en/detailed-voting-result), which recorded **45.8%** of valid local-election votes online. Smartphone voting and smartphone checking must not be conflated.
 - [Swiss Federal Chancellery on e-voting](https://www.bk.admin.ch/en/e-voting), including limited trials.
-- [National Academies, *Securing the Vote* (2018)](https://www.nationalacademies.org/read/25120/chapter/7), a central argument for auditable paper and against currently available internet voting.
+- [National Academies, *Securing the Vote* (2018)](https://www.nationalacademies.org/read/25120/chapter/7), the full report behind the [official highlights](https://nap.nationalacademies.org/resource/25120/Securing%20the%20Vote%20ReportHighlights.pdf); its 2018 recommendations are discussed below.
 - [*Going from Bad to Worse: From Internet Voting to Blockchain Voting*](https://academic.oup.com/cybersecurity/article/7/1/tyaa025/6137886), a serious research critique.
 
 ## What this project's initial prototype really checks
@@ -45,6 +45,14 @@ The prototype encrypts submissions on the client and publicly signs a ciphertext
 Paper is valuable when it is voter-verified, retained with reliable custody, and actually used to check the reported outcome. A risk-limiting audit sets a bound on the chance of accepting a wrong outcome and can escalate to a full hand count. It does not resolve every enrollment or access problem. Rivest's [2025 presentation](https://people.csail.mit.edu/rivest/pubs/Riv25a.pdf), especially slides 15–16, 22, 28 and 35–41, distinguishes software independence, paper audits, cryptographic verification, hybrids and remote internet voting. It favors paper-plus-cryptography possibilities while rejecting present-day internet voting for public elections. Those are compatible positions.
 
 The essay's [arguments for paper](/essay.html#arguments-for-paper-voting) and [arguments against paper](/essay.html#arguments-against-paper-voting) compare complete participation and verification systems. Neither long lines nor a lack of ranked ballots is an intrinsic property of paper.
+
+## The National Academies recommendations
+
+The National Academies of Sciences, Engineering, and Medicine’s [*Securing the Vote: Protecting American Democracy* — Report Highlights](https://nap.nationalacademies.org/resource/25120/Securing%20the%20Vote%20ReportHighlights.pdf) (September 2018) is a three-page summary of the consensus study already cited above.
+
+Page 1 rejects internet return of marked ballots because the available technology did not establish the required secrecy, security and verifiability. Page 2 recommends risk-limiting audits before certification and pilots of end-to-end-verifiable elections **using paper ballots**. The highlights also support research funding and usable ballot design.
+
+For this project, those are distinct propositions to engage with. Testing cryptographic evidence alongside paper is a concrete research path; it is not evidence that remote voting from personal devices is ready. A public ledger and private membership credentials would still need to address ballot intent, secrecy, coercion, availability and trustworthy outcomes. Our case for exploration must show what a proposed design changes and what remains unresolved.
 
 ## Proofs change what can be checked
 

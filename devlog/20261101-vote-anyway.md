@@ -46,6 +46,8 @@ A voter-verified paper ballot provides evidence outside the computer. With sound
 
 A supervised polling place also offers something a living room may not: a private place to make a choice. Remote voting has to contend with someone looking over a voter's shoulder, demanding compliance, or preventing them from voting again. Encryption alone cannot make that person leave the room.
 
+The National Academies’ [2018 report highlights](https://nap.nationalacademies.org/resource/25120/Securing%20the%20Vote%20ReportHighlights.pdf) recommended human-readable paper ballots and risk-limiting audits, and opposed internet return of marked ballots with the technology then available. They also called for research and pilots of end-to-end-verifiable systems using paper ballots. [The security appendix examines that distinction](/appendix-security.html#the-national-academies-recommendations).
+
 I concede the force of these arguments. The case for paper deserves to be answered at its strongest.
 
 ### Arguments against paper voting

@@ -10,6 +10,8 @@ The essay makes an argument for more accessible participation. Its appendices ca
 - [Democratic mechanisms and precedents](/appendix-democracy.html) — deliberation, delegation, participation incentives and counting rules, with references to Smartocracy, liquid democracy, Pol.is, Decidim and vTaiwan.
 - [The prototype and its research questions](/appendix-prototype.html) — the experiment’s design and technical questions. For the current implementation, see [Where we are](/about#where-we-are).
 
+The National Academies’ [2018 report highlights](https://nap.nationalacademies.org/resource/25120/Securing%20the%20Vote%20ReportHighlights.pdf) now have a [dedicated reading note](/appendix-security.html#the-national-academies-recommendations), alongside the existing full-report citation.
+
 ## Community voting and identity
 
 [Appendix E — Community voting, identity and usable tools](/appendix-community-voting.html) examines the developer-reported OpenVTC capabilities: eligibility tickets, question formats, registration windows, recasting, secrecy, result visibility and separate submission paths. It distinguishes that work from Vote Anyway’s current sign-in and ballot features. The [security appendix](/appendix-security.html#proofs-change-what-can-be-checked) adds the history of zero-knowledge proofs, Helios, and Rivest’s distinction between paper, cryptographic and remote voting.

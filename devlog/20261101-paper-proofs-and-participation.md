@@ -11,3 +11,7 @@ A new [community-voting appendix](/appendix-community-voting.html) examines the 
 The working prototype still supports single-choice topics, encrypted submissions, receipts and signed records. This is a writing and research update, with no changes to authentication, ballot handling, counting or database structure. Ranked voting and privacy-preserving eligibility remain further work.
 
 The current essay is maintained separately from the preserved first draft. Earlier writing and all existing appendices remain available; the longer Substack article is also retained in the repository's writing archive. The website is the continuing home for the fuller argument, with a shorter Substack introduction prepared to point readers here.
+
+## Further reading: the National Academies
+
+Anselm supplied the [official 2018 report highlights](https://nap.nationalacademies.org/resource/25120/Securing%20the%20Vote%20ReportHighlights.pdf). We expanded the existing citation into a [security-appendix reading note](/appendix-security.html#the-national-academies-recommendations) and linked it from the essay's case for paper. The editorial purpose is to distinguish a deployment recommendation from a research agenda, and to make our proposed public-ledger direction answer the strongest objections. This is a reading update, with no change to the application.
